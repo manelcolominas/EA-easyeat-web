@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EASY-EAT — Iniciar Sessió</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── TOKENS ── */
+        :root {
+            --green:      #10B981;
+            --green-lt:   #E4F9EE;
+            --dark:       #0F0A05;
+            --mid:        #6B7280;
+            --warm:       #FAF7F4;
+            --white:      #FFFFFF;
+            --border:     #E5E7EB;
+            --error:      #EF4444;
+            --font-display: 'Syne', sans-serif;
+            --font-body:    'DM Sans', sans-serif;
+            --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-card:  20px;
+            --radius-btn:   999px;
+            --shadow-card:  0 8px 48px rgba(15,10,5,0.08), 0 1px 3px rgba(15,10,5,0.04);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        /* ── BODY / BG ── */
+        body {
+            font-family: var(--font-body);
+            background: var(--warm);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow-x: hidden;
+        }
+
+        /* Subtle ambient blobs */
+        .bg-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+        }
+        .bg-blob-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(16,185,129,0.10) 0%, transparent 65%);
+            top: -200px; right: -150px;
+        }
+        .bg-blob-2 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 65%);
+            bottom: -150px; left: -120px;
+        }
+
+        /* Grain texture */
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 256px;
+        }
+
+        /* ── CARD ── */
+        .card {
+            position: relative;
+            z-index: 10;
+            background: var(--white);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border);
+            padding: 48px 40px 40px;
+            width: 100%;
+            max-width: 420px;
+            animation: fadeUp 0.5s var(--ease) both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── LOGO ── */
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            text-decoration: none;
+        }
+
+        /* Green dot badge */
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+        }
+
+        /* ── HEADING ── */
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--mid);
+            margin-bottom: 36px;
+            letter-spacing: -0.01em;
+        }
+
+        /* ── FORM ── */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--dark);
+            letter-spacing: -0.01em;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--dark);
+            background: var(--white);
+            outline: none;
+            transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+            -webkit-appearance: none;
+        }
+
+        /* Placeholder style */
+        input::placeholder {
+            color: #C0BAB2;
+        }
+
+        /* Focus ring — green accent */
+        input:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(16,185,129,0.12);
+        }
+
+        /* Invalid state (HTML5 constraint) */
+        input:not(:placeholder-shown):invalid {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(239,68,68,0.10);
+        }
+
+        /* ── FORGOT LINK ── */
+        .forgot-wrap {
+            text-align: right;
+            margin-top: -12px;
+            margin-bottom: 28px;
+        }
+
+        .forgot-link {
+            font-size: 12.5px;
+            color: var(--mid);
+            text-decoration: none;
+            transition: color 0.2s var(--ease);
+        }
+
+        .forgot-link:hover {
+            color: var(--green);
+        }
+
+        /* ── BUTTON ── */
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: var(--radius-btn);
+            background: var(--dark);
+            color: var(--white);
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            cursor: pointer;
+            transition:
+                background 0.25s var(--ease),
+                transform   0.15s var(--ease),
+                box-shadow  0.25s var(--ease);
+        }
+
+        .btn-primary:hover {
+            background: var(--green);
+            box-shadow: 0 8px 28px rgba(16,185,129,0.28);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .divider-text {
+            font-size: 12px;
+            color: #C0BAB2;
+            white-space: nowrap;
+        }
+
+        /* ── SIGNUP LINK ── */
+        .signup-row {
+            text-align: center;
+            font-size: 13.5px;
+            color: var(--mid);
+        }
+
+        .signup-row a {
+            color: var(--dark);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1.5px solid var(--green);
+            padding-bottom: 1px;
+            transition: color 0.2s var(--ease);
+        }
+
+        .signup-row a:hover {
+            color: var(--green);
+        }
+
+        /* ── ERROR MESSAGE ── */
+        .error-msg {
+            display: none; /* toggled via JS below */
+            align-items: center;
+            gap: 8px;
+            background: #FEF2F2;
+            border: 1px solid rgba(239,68,68,0.2);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 13.5px;
+            color: var(--error);
+            margin-bottom: 20px;
+            animation: shake 0.35s var(--ease);
+        }
+
+        .error-msg.visible {
+            display: flex;
+        }
+
+        /* Error icon */
+        .error-icon {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            fill: var(--error);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%       { transform: translateX(-5px); }
+            40%       { transform: translateX(5px); }
+            60%       { transform: translateX(-4px); }
+            80%       { transform: translateX(4px); }
+        }
+
+        /* ── RESPONSIVE TWEAK ── */
+        @media (max-width: 460px) {
+            .card { padding: 36px 24px 32px; }
+            .card-title { font-size: 24px; }
+        }
+
+         /* ── NAV ── */
+         nav {
+            position: relative;
+            z-index: 10;
+            padding: 22px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: slideDown 0.6s var(--ease) both;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .logo-easy { color: var(--green); }
+        .logo-dash { color: var(--dark); opacity: 0.3; margin: 0 1px; }
+        .logo-eat  { color: #E8450A; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Ambient background blobs -->
+    <div class="bg-layer" aria-hidden="true">
+        <div class="bg-blob bg-blob-1"></div>
+        <div class="bg-blob bg-blob-2"></div>
+    </div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <span class="logo-easy">EASY</span><span class="logo-dash">-</span><span class="logo-eat">EAT</span>
+        </a>
+    </nav>
+
+    <!-- ── LOGIN CARD ── -->
+    <main class="card" role="main">
+
+        <!-- Heading -->
+        <h1 class="card-title">Benvingut de nou</h1>
+        <p class="card-subtitle">Accedeix al teu panell de control</p>
+
+        <!-- Error message (hidden by default, shown via JS on failed login) -->
+        <div class="error-msg" id="errorMsg" role="alert" aria-live="polite">
+            <svg class="error-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 7a1 1 0 012 0v4a1 1 0 01-2 0V7zm1 8a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5z" clip-rule="evenodd"/>
+            </svg>
+            Email o contrasenya incorrectes. Torna-ho a intentar.
+        </div>
+
+        <!-- Login form -->
+        <!-- action="/api/login" method="POST" → integrar backend aquí -->
+        <form id="loginForm" novalidate>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Correu electrònic</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="hola@restaurant.com"
+                    autocomplete="email"
+                    required
+                />
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Contrasenya</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                    autocomplete="current-password"
+                    required
+                />
+            </div>
+
+            <!-- Forgot password link -->
+            <div class="forgot-wrap">
+                <a href="/forgot-password" class="forgot-link">He oblidat la contrasenya</a>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn-primary" id="submitBtn">
+                Iniciar sessió
+            </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">
+            <div class="divider-line"></div>
+            <span class="divider-text">o</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- Signup link -->
+        <p class="signup-row">
+            No tens compte? <a href="register.html">Crea'n un</a>
+        </p>
+
+    </main>
+
+
+    <script>
+        /* ─────────────────────────────────────
+           Validació bàsica del formulari
+           Substitueix la lògica de fetch() per
+           la teva crida real al backend.
+        ───────────────────────────────────── */
+
+        const form      = document.getElementById('loginForm');
+        const errorMsg  = document.getElementById('errorMsg');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email    = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Amaga error anterior
+            errorMsg.classList.remove('visible');
+
+            // Validació bàsica
+            if (!email || !password) {
+                showError();
+                return;
+            }
+
+            // ── SIMULACIÓ: mostra l'error per demostrar l'estil ──
+            // Elimina aquest bloc i substitueix-lo per la teva crida real:
+            //
+            // const res = await fetch('/api/login', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ email, password })
+            // });
+            // if (res.ok) { window.location.href = '/dashboard'; }
+            // else { showError(); }
+
+            submitBtn.textContent = 'Carregant...';
+            submitBtn.disabled = true;
+
+            await new Promise(r => setTimeout(r, 900)); // simula latència
+
+            // Exemple: credencials d'accés demo
+            if (email === 'demo@easyeat.com' && password === 'demo1234') {
+                submitBtn.textContent = '✓ Accedint…';
+                // window.location.href = '/dashboard'; // descomenta per redirigir
+            } else {
+                showError();
+                submitBtn.textContent = 'Iniciar sessió';
+                submitBtn.disabled = false;
+            }
+        });
+
+        function showError() {
+            errorMsg.classList.add('visible');
+            // Torna a posar el focus al camp email
+            document.getElementById('email').focus();
+        }
+    </script>
+
+</body>
+</html>
