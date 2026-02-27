@@ -81,6 +81,16 @@
             letter-spacing: -0.5px;
             display: inline-flex;
             align-items: center;
+            position: relative;
+            z-index: 101;
+        }
+
+        nav.menu-open {
+            background: var(--color-white);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            z-index: 101;
+            border-bottom: none;
         }
 
         .logo span {
@@ -1048,14 +1058,17 @@
             .nav-links {
                 display: none;
                 position: fixed;
-                inset: 0;
-                background: rgba(255,255,255,0.98);
-                backdrop-filter: blur(12px);
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--color-white);
+                backdrop-filter: none;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 gap: 32px;
-                z-index: 100;
+                z-index: 99;
             }
             .nav-links.open { display: flex; }
             .nav-links a { font-size: 1.2rem; }
@@ -1579,17 +1592,22 @@
         // Hamburger menu toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks  = document.getElementById('nav-links');
+        const nav = document.getElementById('main-nav');
 
         if (hamburger && navLinks) {
             hamburger.addEventListener('click', () => {
                 navLinks.classList.toggle('open');
+                if (nav) nav.classList.toggle('menu-open');
                 const isOpen = navLinks.classList.contains('open');
                 hamburger.setAttribute('aria-expanded', isOpen);
             });
 
             // Tanca el menú en clicar un link
             navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => navLinks.classList.remove('open'));
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    if (nav) nav.classList.remove('menu-open');
+                });
             });
         }
     </script>

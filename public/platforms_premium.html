@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EASY-EAT — Disponible a totes les plataformes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────── */
+    :root {
+        --white: #FFFFFF;
+        --black: #0A0A0A;
+        --gray-50: #FAFAFA;
+        --gray-100: #F4F4F4;
+        --gray-200: #E5E5E5;
+        --gray-300: #D4D4D4;
+        --gray-600: #525252;
+        --gray-800: #262626;
+        --accent: #10B981;
+        --accent-light: #34D399;
+        --accent-dark: #059669;
+        --accent-glow: rgba(16, 185, 129, 0.18);
+        --font-display: 'Syne', sans-serif;
+        --font-body: 'DM Sans', sans-serif;
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─────────────────────────────────────────
+       RESET
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ── */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 18px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+    }
+
+    .nav-logo.white-text {
+        color: var(--black) !important;
+    }
+
+    .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--black);
+        text-decoration: none;
+        letter-spacing: -0.03em;
+        transition: color 0.3s ease;
+        position: relative;
+        z-index: 101;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: var(--gray-600);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+
+    .nav-cta {
+        background: var(--black) !important;
+        color: var(--white) !important;
+        padding: 10px 24px;
+        border-radius: 100px;
+        font-weight: 500 !important;
+    }
+    .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+    .nav-login {
+        font-weight: 600 !important;
+        color: var(--black) !important;
+    }
+    .nav-login:hover {
+        color: var(--accent) !important;
+    }
+
+    .hamburger-menu {
+        display: none;
+        cursor: pointer;
+        z-index: 101;
+    }
+
+    .hamburger-menu span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        margin: 5px 0;
+        background-color: var(--black);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu.active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 140px 24px 80px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* radial gradient background */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(16,185,129,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid rgba(16,185,129,0.2);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s var(--transition) both;
+    }
+    .hero-badge-pulse {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.035em;
+      color: var(--black);
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s var(--transition) 0.1s both;
+      max-width: 900px;
+    }
+    .hero-title span {
+      color: var(--accent);
+      position: relative;
+    }
+    .hero-title span::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      border-radius: 2px;
+      opacity: 0.5;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--gray-600);
+      margin-top: 24px;
+      line-height: 1.6;
+      max-width: 520px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s var(--transition) 0.2s both;
+    }
+
+    /* Store badges */
+    .store-badges {
+      display: flex;
+      gap: 16px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.8s var(--transition) 0.35s both;
+    }
+
+    .badge-btn {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 13px 22px;
+      transition: transform 0.3s var(--transition), box-shadow 0.3s var(--transition);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08);
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .badge-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .badge-btn svg { flex-shrink: 0; }
+    .badge-text { display: flex; flex-direction: column; gap: 1px; text-align: left; }
+    .badge-pre {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      opacity: 0.7;
+      text-transform: uppercase;
+    }
+    .badge-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .badge-btn.web-btn {
+      background: var(--white);
+      color: var(--black);
+      border: 1.5px solid var(--gray-200);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .badge-btn.web-btn:hover {
+      box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+      border-color: rgba(16,185,129,0.3);
+    }
+    .web-icon {
+      width: 32px; height: 32px;
+      background: var(--accent-glow);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position: relative;
+      z-index: 1;
+      margin-top: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp 0.8s var(--transition) 0.6s both;
+    }
+    .scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      opacity: 0.5;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gray-600), transparent);
+      opacity: 0.3;
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ─────────────────────────────────────────
+       MOCKUP SECTION
+    ───────────────────────────────────────── */
+    .mockup-section {
+      padding: 80px 24px 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .mockup-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .mockup-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .mockup-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      text-align: center;
+      margin-bottom: 80px;
+      line-height: 1.1;
+    }
+
+    .phones-stage {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── PHONE SHELL ── */
+    .phone {
+      position: absolute;
+      border-radius: 44px;
+      overflow: hidden;
+      background: #111;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 30px 80px rgba(0,0,0,0.22),
+        0 8px 20px rgba(0,0,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 110px; height: 30px;
+      background: #111;
+      border-radius: 0 0 18px 18px;
+      z-index: 10;
+    }
+    .phone-inner {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Primary iPhone */
+    .phone-primary {
+      width: 240px; height: 490px;
+      z-index: 3;
+      animation: floatPrimary 6s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+    .phone-primary:hover { animation-play-state: paused; transform: scale(1.03) translateY(-8px) rotate(0deg); }
+
+    /* Secondary Android */
+    .phone-secondary {
+      width: 210px; height: 430px;
+      right: 20px;
+      z-index: 2;
+      opacity: 0.75;
+      filter: blur(0.5px);
+      animation: floatSecondary 7s ease-in-out 1s infinite;
+    }
+    .phone-secondary:hover { animation-play-state: paused; }
+
+    /* ── PHONE SCREEN CONTENT ── */
+    .screen {
+      width: 100%; height: 100%;
+      background: #0F1117;
+      padding: 48px 16px 20px;
+      font-family: var(--font-body);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    /* status bar */
+    .s-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.55rem; opacity: 0.5; margin-bottom: 18px; padding: 0 2px;
+    }
+
+    /* greeting */
+    .s-greeting { font-size: 0.62rem; color: #6B7280; margin-bottom: 2px; }
+    .s-name { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; margin-bottom: 14px; }
+
+    /* kpi cards */
+    .s-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 14px; }
+    .s-kpi {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .s-kpi-label { font-size: 0.45rem; color: #6B7280; margin-bottom: 3px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .s-kpi-value { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; line-height: 1; }
+    .s-kpi-value.green { color: var(--accent); }
+    .s-kpi-sub { font-size: 0.42rem; color: #6B7280; margin-top: 2px; }
+
+    /* mini chart */
+    .s-chart-area {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .s-chart-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .s-chart-label { font-size: 0.5rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.05em; }
+    .s-chart-pill {
+      font-size: 0.4rem; color: var(--accent);
+      background: rgba(16,185,129,0.12); border-radius: 4px; padding: 2px 6px;
+    }
+    .s-chart-bars { display: flex; align-items: flex-end; gap: 4px; height: 44px; }
+    .s-bar {
+      flex: 1;
+      background: rgba(255,255,255,0.07);
+      border-radius: 4px 4px 0 0;
+      transition: height 0.3s;
+    }
+    .s-bar.active { background: var(--accent); opacity: 0.9; }
+
+    /* orders list */
+    .s-orders-label { font-size: 0.48rem; color: #6B7280; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 7px; }
+    .s-order {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 7px 9px;
+      margin-bottom: 5px;
+    }
+    .s-order-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .s-order-info { flex: 1; }
+    .s-order-name { font-size: 0.5rem; font-weight: 500; }
+    .s-order-time { font-size: 0.4rem; color: #6B7280; }
+    .s-order-val { font-size: 0.5rem; font-weight: 600; color: var(--accent); }
+
+    /* ── second phone (analytics) ── */
+    .screen-b {
+      width: 100%; height: 100%;
+      background: var(--gray-50);
+      padding: 46px 14px 16px;
+      font-family: var(--font-body);
+      color: var(--black);
+      overflow: hidden;
+    }
+    .b-header { margin-bottom: 14px; }
+    .b-title { font-family: var(--font-display); font-size: 0.88rem; font-weight: 800; margin-bottom: 2px; }
+    .b-sub { font-size: 0.45rem; color: var(--gray-600); }
+
+    .b-big-stat {
+      background: var(--black);
+      border-radius: 16px;
+      padding: 14px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .b-big-label { font-size: 0.42rem; color: var(--gray-600); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .b-big-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 900; color: var(--accent); line-height: 1; }
+    .b-big-delta { font-size: 0.42rem; color: var(--gray-600); margin-top: 2px; }
+
+    .b-row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+    .b-mini {
+      background: var(--gray-100);
+      border-radius: 12px;
+      padding: 10px 11px;
+    }
+    .b-mini-label { font-size: 0.42rem; color: var(--gray-600); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .b-mini-val { font-family: var(--font-display); font-size: 0.88rem; font-weight: 800; }
+
+    .b-line-chart { background: var(--gray-100); border-radius: 12px; padding: 10px; }
+    .b-line-label { font-size: 0.42rem; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .b-svg { width: 100%; }
+
+    /* ─────────────────────────────────────────
+       TRUST SECTION
+    ───────────────────────────────────────── */
+    .trust-section {
+      padding: 100px 24px 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--gray-50);
+      border-top: 1px solid var(--gray-200);
+      position: relative;
+    }
+    .trust-section::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+    }
+
+    .trust-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .trust-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      text-align: center;
+      margin-bottom: 80px;
+      max-width: 540px;
+      line-height: 1.15;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      width: 100%;
+      max-width: 900px;
+      background: var(--gray-200);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .trust-card {
+      background: var(--white);
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: background 0.3s var(--transition);
+    }
+    .trust-card:hover { background: var(--gray-50); }
+    .trust-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(16,185,129,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .trust-card-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      line-height: 1.3;
+    }
+    .trust-card-text {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    /* ─────────────────────────────────────────
+       CTA STRIP
+    ───────────────────────────────────────── */
+    .cta-strip {
+      padding: 100px 24px;
+      text-align: center;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-strip::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-tagline {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      font-weight: 500;
+      position: relative;
+    }
+    .cta-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .cta-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 48px;
+      position: relative;
+    }
+    .cta-badges {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .badge-btn-light {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.07);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 13px 22px;
+      transition: transform 0.3s var(--transition), background 0.3s, box-shadow 0.3s var(--transition);
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+    .badge-btn-light:hover {
+      transform: translateY(-3px) scale(1.02);
+      background: rgba(255,255,255,0.12);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+            background: #060606;
+            color: rgba(255,255,255,0.35);
+            padding: 48px 40px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        footer span { color: var(--accent); }
+
+    /* ─────────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 0.6; transform: scaleY(1.15); }
+    }
+
+    @keyframes floatPrimary {
+      0%, 100% { transform: rotate(-3deg) translateY(0px); }
+      50%       { transform: rotate(-3deg) translateY(-18px); }
+    }
+
+    @keyframes floatSecondary {
+      0%, 100% { transform: rotate(4deg) translateY(0px); }
+      50%       { transform: rotate(4deg) translateY(-12px); }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+        nav { padding: 16px 24px; }
+        .hamburger-menu { display: block; }
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -24px;
+            width: calc(100% + 48px);
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .nav-links.active { display: flex; }
+        .nav-links li { width: 100%; text-align: center; }
+        .nav-links a { padding: 15px 0; display: block; width: 100%; font-size: 1.1rem; color: var(--black); }
+        .nav-cta {
+            margin: 10px auto 0;
+            display: inline-block;
+            width: auto;
+        }
+
+      .hero { padding: 120px 20px 60px; }
+      .store-badges { gap: 12px; }
+
+      .phones-stage {
+        height: 420px;
+        max-width: 340px;
+      }
+      .phone-primary { width: 180px; height: 368px; }
+      .phone-secondary { width: 158px; height: 322px; }
+
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+      .trust-card { padding: 32px 24px; }
+
+      footer { padding: 24px 20px; flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .badge-btn, .badge-btn-light { width: 100%; max-width: 280px; }
+      .store-badges, .cta-badges { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAV
+  ════════════════════════════════════════ -->
+    <!-- ── NAV ── -->
+    <nav>
+        <a href="#" class="nav-logo">EASY<span>-EAT</span></a>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#com-funciona">Com funciona</a></li>
+            <li><a href="#funcionalitats">Beneficis</a></li>
+            <li><a href="#resultats">Resultats</a></li>
+            <li><a href="contact.html">Contacte</a></li>
+            <li><a href="login.html" class="nav-login">Iniciar sessió</a></li>
+            <li><a href="contact.html" class="nav-cta">Descarrega</a></li>
+        </ul>
+    </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section class="hero">
+
+    <div class="hero-badge">
+      <div class="hero-badge-pulse"></div>
+      Disponible ara · iOS · Android · Web
+    </div>
+
+    <h1 class="hero-title">
+      EASY-EAT a <span>totes</span><br/>les plataformes
+    </h1>
+
+    <p class="hero-sub">
+      Controla, gestiona i fidelitza des de qualsevol dispositiu. Una sola app. Experiència perfecta.
+    </p>
+
+    <div class="store-badges">
+
+      <!-- Google Play -->
+      <a href="#" class="badge-btn" aria-label="Obtén a Google Play">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3.18 1.15L14.1 12 3.18 22.85c-.53-.28-.88-.83-.88-1.45V2.6c0-.62.35-1.17.88-1.45z" fill="#EA4335"/>
+          <path d="M20.07 10.2L17.35 8.7 14.1 12l3.25 3.3 2.72-1.5c.78-.43.78-1.57 0-2z" fill="#FBBC04"/>
+          <path d="M3.18 1.15L14.1 12 17.35 8.7 6.87.75A2.26 2.26 0 003.18 1.15z" fill="#4285F4"/>
+          <path d="M3.18 22.85A2.26 2.26 0 006.87 23.25l10.48-7.95L14.1 12 3.18 22.85z" fill="#34A853"/>
+        </svg>
+        <div class="badge-text">
+          <span class="badge-pre">Get it on</span>
+          <span class="badge-name">Google Play</span>
+        </div>
+      </a>
+
+      <!-- App Store -->
+      <a href="#" class="badge-btn" aria-label="Download on the App Store">
+        <svg width="22" height="24" viewBox="0 0 22 24" fill="white">
+          <path d="M18.09 12.68c-.02-2.36 1.93-3.5 2.02-3.56-1.1-1.61-2.81-1.83-3.42-1.86-1.46-.15-2.84.86-3.58.86-.74 0-1.89-.84-3.1-.82-1.6.02-3.07.93-3.89 2.36-1.66 2.88-.43 7.15 1.19 9.5.79 1.14 1.73 2.42 2.97 2.37 1.19-.05 1.64-.77 3.08-.77 1.44 0 1.85.77 3.1.74 1.28-.02 2.1-1.17 2.88-2.31.9-1.32 1.27-2.59 1.29-2.66-.03-.01-2.52-.97-2.54-3.85zM15.64 5.04c.66-.8 1.1-1.91.98-3.02-.95.04-2.08.63-2.76 1.43-.6.69-1.13 1.8-.99 2.86 1.06.08 2.12-.54 2.77-1.27z"/>
+        </svg>
+        <div class="badge-text">
+          <span class="badge-pre">Download on the</span>
+          <span class="badge-name">App Store</span>
+        </div>
+      </a>
+
+      <!-- Web -->
+      <a href="#" class="badge-btn web-btn" aria-label="Accedeix a la versió web">
+        <div class="web-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="6.5" stroke="#10B981" stroke-width="1.5"/>
+            <ellipse cx="8" cy="8" rx="2.5" ry="6.5" stroke="#10B981" stroke-width="1.2"/>
+            <line x1="1.5" y1="8" x2="14.5" y2="8" stroke="#10B981" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="badge-text">
+          <span class="badge-pre" style="color:var(--gray-600)">Accedeix via</span>
+          <span class="badge-name" style="color:var(--black)">Versió Web</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="scroll-hint">
+      <span>Descobreix l'app</span>
+      <div class="scroll-line"></div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       MOCKUP SECTION
+  ════════════════════════════════════════ -->
+  <section class="mockup-section">
+
+    <div class="mockup-label">Vista prèvia</div>
+    <h2 class="mockup-title">Una experiència premium<br/>a cada pantalla</h2>
+
+    <div class="phones-stage">
+
+      <!-- Primary iPhone (dark) -->
+      <div class="phone phone-primary">
+        <div class="phone-inner">
+          <div class="screen">
+            <div class="s-topbar">
+              <span>9:41</span>
+              <span>●●●</span>
+            </div>
+            <div class="s-greeting">Bon dia,</div>
+            <div class="s-name">Restaurant Cal Pep 🍽️</div>
+
+            <div class="s-kpis">
+              <div class="s-kpi">
+                <div class="s-kpi-label">Vendes avui</div>
+                <div class="s-kpi-value green">€1.248</div>
+                <div class="s-kpi-sub">↑ 14% vs ahir</div>
+              </div>
+              <div class="s-kpi">
+                <div class="s-kpi-label">Comandes</div>
+                <div class="s-kpi-value">47</div>
+                <div class="s-kpi-sub">3 pendents</div>
+              </div>
+              <div class="s-kpi">
+                <div class="s-kpi-label">Valoració</div>
+                <div class="s-kpi-value green">4.9★</div>
+                <div class="s-kpi-sub">128 ressenyes</div>
+              </div>
+              <div class="s-kpi">
+                <div class="s-kpi-label">Clients nous</div>
+                <div class="s-kpi-value">12</div>
+                <div class="s-kpi-sub">aquest mes</div>
+              </div>
+            </div>
+
+            <div class="s-chart-area">
+              <div class="s-chart-top">
+                <span class="s-chart-label">Vendes setmanals</span>
+                <span class="s-chart-pill">+18%</span>
+              </div>
+              <div class="s-chart-bars">
+                <div class="s-bar" style="height:40%"></div>
+                <div class="s-bar" style="height:60%"></div>
+                <div class="s-bar" style="height:45%"></div>
+                <div class="s-bar" style="height:80%"></div>
+                <div class="s-bar" style="height:55%"></div>
+                <div class="s-bar active" style="height:95%"></div>
+                <div class="s-bar" style="height:70%"></div>
+              </div>
+            </div>
+
+            <div class="s-orders-label">Últimes comandes</div>
+            <div class="s-order">
+              <div class="s-order-dot" style="background:var(--accent)"></div>
+              <div class="s-order-info">
+                <div class="s-order-name">Taula 4 · Menú degustació</div>
+                <div class="s-order-time">fa 3 min</div>
+              </div>
+              <div class="s-order-val">€68</div>
+            </div>
+            <div class="s-order">
+              <div class="s-order-dot" style="background:#F59E0B"></div>
+              <div class="s-order-info">
+                <div class="s-order-name">Delivery · Carrer Major 12</div>
+                <div class="s-order-time">fa 11 min</div>
+              </div>
+              <div class="s-order-val">€24</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary phone (light analytics) -->
+      <div class="phone phone-secondary">
+        <div class="phone-inner">
+          <div class="screen-b">
+            <div class="b-header">
+              <div class="b-title">Analítica</div>
+              <div class="b-sub">Febrer 2025</div>
+            </div>
+
+            <div class="b-big-stat">
+              <div class="b-big-label">Ingressos totals</div>
+              <div class="b-big-val">€28.450</div>
+              <div class="b-big-delta">↑ 23% respecte el mes anterior</div>
+            </div>
+
+            <div class="b-row">
+              <div class="b-mini">
+                <div class="b-mini-label">Clients</div>
+                <div class="b-mini-val">1.203</div>
+              </div>
+              <div class="b-mini">
+                <div class="b-mini-label">Ticket mig</div>
+                <div class="b-mini-val">€23,6</div>
+              </div>
+            </div>
+
+            <div class="b-line-chart">
+              <div class="b-line-label">Tendència</div>
+              <svg class="b-svg" height="48" viewBox="0 0 160 48" fill="none">
+                <defs>
+                  <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#10B981" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0 40 C20 38 30 30 50 28 C70 26 80 32 100 22 C120 12 130 18 160 8 V48 H0 Z" stroke="#10B981" stroke-width="1.5" fill="none"/>
+                <path d="M0 40 C20 38 30 30 50 28 C70 26 80 32 100 22 C120 12 130 18 160 8 V48 H0 Z" fill="url(#lineGrad)"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       TRUST SECTION
+  ════════════════════════════════════════ -->
+  <section class="trust-section">
+
+    <div class="trust-eyebrow">Per què EASY-EAT</div>
+    <h2 class="trust-title">Tot el que necessites,<br/>allà on ets.</h2>
+
+    <div class="trust-grid">
+
+      <div class="trust-card">
+        <div class="trust-icon">⚡</div>
+        <div class="trust-card-title">Mateixa experiència a totes les plataformes</div>
+        <div class="trust-card-text">Disseny i funcionalitat idèntics a iOS, Android i web. Sense compromisos. Sense diferències.</div>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">🔄</div>
+        <div class="trust-card-title">Sincronització en temps real</div>
+        <div class="trust-card-text">Dades actualitzades al moment entre tots els teus dispositius. Zero latència, màxim control.</div>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">🔐</div>
+        <div class="trust-card-title">Seguretat de nivell empresarial</div>
+        <div class="trust-card-text">Xifrat end-to-end, autenticació de dos factors i infraestructura al núvol amb uptime del 99.99%.</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CTA STRIP
+  ════════════════════════════════════════ -->
+  <section class="cta-strip">
+
+    <div class="cta-tagline">Comença avui</div>
+    <h2 class="cta-heading">Descarrega l'app.<br/>Transforma el teu negoci.</h2>
+    <p class="cta-sub">Prova gratuïta de 30 dies. Sense targeta de crèdit.</p>
+
+    <div class="cta-badges">
+
+      <a href="#" class="badge-btn-light" aria-label="Google Play">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3.18 1.15L14.1 12 3.18 22.85c-.53-.28-.88-.83-.88-1.45V2.6c0-.62.35-1.17.88-1.45z" fill="#EA4335"/>
+          <path d="M20.07 10.2L17.35 8.7 14.1 12l3.25 3.3 2.72-1.5c.78-.43.78-1.57 0-2z" fill="#FBBC04"/>
+          <path d="M3.18 1.15L14.1 12 17.35 8.7 6.87.75A2.26 2.26 0 003.18 1.15z" fill="#4285F4"/>
+          <path d="M3.18 22.85A2.26 2.26 0 006.87 23.25l10.48-7.95L14.1 12 3.18 22.85z" fill="#34A853"/>
+        </svg>
+        <div class="badge-text">
+          <span class="badge-pre" style="opacity:0.5">Get it on</span>
+          <span class="badge-name">Google Play</span>
+        </div>
+      </a>
+
+      <a href="#" class="badge-btn-light" aria-label="App Store">
+        <svg width="20" height="22" viewBox="0 0 22 24" fill="white">
+          <path d="M18.09 12.68c-.02-2.36 1.93-3.5 2.02-3.56-1.1-1.61-2.81-1.83-3.42-1.86-1.46-.15-2.84.86-3.58.86-.74 0-1.89-.84-3.1-.82-1.6.02-3.07.93-3.89 2.36-1.66 2.88-.43 7.15 1.19 9.5.79 1.14 1.73 2.42 2.97 2.37 1.19-.05 1.64-.77 3.08-.77 1.44 0 1.85.77 3.1.74 1.28-.02 2.1-1.17 2.88-2.31.9-1.32 1.27-2.59 1.29-2.66-.03-.01-2.52-.97-2.54-3.85zM15.64 5.04c.66-.8 1.1-1.91.98-3.02-.95.04-2.08.63-2.76 1.43-.6.69-1.13 1.8-.99 2.86 1.06.08 2.12-.54 2.77-1.27z"/>
+        </svg>
+        <div class="badge-text">
+          <span class="badge-pre" style="opacity:0.5">Download on the</span>
+          <span class="badge-name">App Store</span>
+        </div>
+      </a>
+
+      <a href="#" class="badge-btn-light" aria-label="Web">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+          <ellipse cx="10" cy="10" rx="3" ry="8.5" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+          <line x1="1.5" y1="10" x2="18.5" y2="10" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+        </svg>
+        <div class="badge-text">
+          <span class="badge-pre" style="opacity:0.5">Accedeix via</span>
+          <span class="badge-name">Versió Web</span>
+        </div>
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+
+  <footer>
+        <p>© 2025 <a href="#" class="nav-logo" style="font-size: 1.1rem; color: #fff;">EASY<span>-EAT</span></a> · Plataforma de fidelització per a restaurants</p>
+    </footer>
+
+    <script>
+        // Change logo color based on background
+        const navLogo = document.querySelector('.nav-logo');
+        const darkSections = document.querySelectorAll('.cta-strip, footer'); // Updated dark sections for this page
+
+        const logoObserverOptions = {
+            threshold: 0.1,
+            rootMargin: '-50px 0px -90% 0px' // Adjust rootMargin to trigger when the section is near the top
+        };
+
+        const logoObserver = new IntersectionObserver((entries) => {
+            let isDarkSectionVisible = false;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    isDarkSectionVisible = true;
+                }
+            });
+
+            if (isDarkSectionVisible) {
+                navLogo.classList.add('white-text');
+            } else {
+                // Check if we are currently in any dark section
+                let inDark = false;
+                darkSections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    // Simple check if the top of the viewport is within the section (considering nav height)
+                    if (rect.top <= 50 && rect.bottom >= 50) {
+                        inDark = true;
+                    }
+                });
+                if (!inDark) {
+                    navLogo.classList.remove('white-text');
+                }
+            }
+        }, logoObserverOptions);
+
+        darkSections.forEach(section => {
+            logoObserver.observe(section);
+        });
+
+        // Fallback scroll event listener for more precise control if IntersectionObserver is tricky with fixed headers
+        window.addEventListener('scroll', () => {
+            let inDark = false;
+            const navHeight = document.querySelector('nav').offsetHeight || 60;
+            const checkPoint = navHeight / 2; // Check point near the top of the screen
+
+            darkSections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= checkPoint && rect.bottom >= checkPoint) {
+                    inDark = true;
+                }
+            });
+
+            if (inDark) {
+                navLogo.classList.add('white-text');
+            } else {
+                navLogo.classList.remove('white-text');
+            }
+        });
+
+        // Nav: afegir ombra en scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
