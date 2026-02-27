@@ -5,128 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacte · EASY-EAT</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
 
     <style>
-        /* ── RESET & VARIABLES ── */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ── PAGE SPECIFIC STYLES ── */
 
-        :root {
-            --white: #FFFFFF;
-            --black: #0A0A0A;
-            --gray-50: #FAFAFA;
-            --gray-100: #F4F4F4;
-            --gray-200: #E5E5E5;
-            --gray-300: #D4D4D4;
-            --gray-600: #525252;
-            --gray-800: #262626;
-            --accent: #10B981;
-            --accent-light: #34D399;
-            --accent-dark: #059669;
-            --accent-glow: rgba(16, 185, 129, 0.15);
-            --font-display: 'Syne', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-md: 0 4px 20px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
-            --shadow-lg: 0 10px 40px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06);
-        }
-
-        html { scroll-behavior: smooth; overflow-x: hidden; }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 18px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: box-shadow var(--transition);
-        }
-
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--black);
-            text-decoration: none;
-            letter-spacing: -0.03em;
-        }
-        .nav-logo span { color: var(--accent); }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-links a {
-            font-size: 0.95rem;
-            font-weight: 400;
-            color: var(--gray-600);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--black); }
-        .nav-links a.active { color: var(--black); font-weight: 500; }
-
-        .nav-cta {
-            background: var(--black) !important;
-            color: var(--white) !important;
-            padding: 10px 24px;
-            border-radius: 100px;
-            font-weight: 500 !important;
-            transition: background 0.2s !important;
-        }
-        .nav-cta:hover { background: var(--accent) !important; }
-
-        .nav-login {
-            font-weight: 600 !important;
-            color: var(--black) !important;
-        }
-        .nav-login:hover {
-            color: var(--accent) !important;
-        }
-
-        /* ── HAMBURGER (mòbil) ── */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 101;
-        }
-        .hamburger span {
-            display: block;
-            width: 25px; height: 2px;
-            background: var(--black);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* ── HERO PETIT ── */
+        /* Hero Contact Specifics */
         .hero-contact {
-            padding: 140px 40px 80px;
+            padding: 140px 24px 80px;
             text-align: center;
             background: linear-gradient(160deg, #FAFAFA 0%, #ffffff 50%, #F0FDF8 100%);
             position: relative;
             overflow: hidden;
         }
 
-        /* Orbes de fons subtils */
         .hero-contact::before {
             content: '';
             position: absolute;
@@ -153,7 +45,6 @@
             50% { transform: scale(1.15) translate(-20px, 30px); }
         }
 
-        /* Badge estil landing */
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -169,51 +60,23 @@
             text-transform: uppercase;
             margin-bottom: 28px;
             position: relative; z-index: 1;
-            animation: fadeInUp 0.7s ease-out both;
+            animation: fadeUp 0.7s ease-out both;
         }
         .hero-badge::before { content: '●'; color: var(--accent); font-size: 0.55rem; }
 
-        .hero-contact h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: -0.04em;
-            color: var(--black);
-            margin-bottom: 20px;
-            position: relative; z-index: 1;
-            animation: fadeInUp 0.8s ease-out 0.1s both;
-        }
-
-        .hero-contact p {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--gray-600);
-            font-weight: 300;
-            max-width: 520px;
-            margin: 0 auto;
-            position: relative; z-index: 1;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ── SECCIÓ PRINCIPAL ── */
+        /* Form Layout */
         .contact-section {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 80px 40px 120px;
+            padding: 80px 24px 120px;
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
             gap: 56px;
             align-items: start;
         }
 
-        /* ── FORMULARI ── */
         .contact-form-wrap {
-            animation: fadeInUp 0.9s ease-out 0.3s both;
+            animation: fadeUp 0.9s ease-out 0.3s both;
         }
 
         .form-label-top {
@@ -226,16 +89,7 @@
             margin-bottom: 24px;
         }
 
-        .contact-form h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 36px;
-            line-height: 1.2;
-        }
-
-        /* Grup de camps */
+        /* Form Elements */
         .form-group {
             margin-bottom: 20px;
         }
@@ -269,40 +123,16 @@
             box-shadow: 0 0 0 4px rgba(16,185,129,0.12);
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--gray-300);
-        }
-
         .form-group textarea {
             resize: vertical;
             min-height: 140px;
         }
 
-        /* Botó enviar */
         .btn-submit {
             width: 100%;
-            padding: 16px 32px;
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            border-radius: 100px;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
-            margin-top: 8px;
-            letter-spacing: 0.01em;
         }
-        .btn-submit:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(16,185,129,0.30);
-        }
-        .btn-submit:active { transform: translateY(0); }
 
-        /* Missatge d'èxit */
+        /* Success Message */
         .success-msg {
             display: none;
             margin-top: 20px;
@@ -314,28 +144,22 @@
             font-size: 0.95rem;
             font-weight: 500;
             text-align: center;
-            animation: fadeInUp 0.5s ease-out both;
+            animation: fadeUp 0.5s ease-out both;
         }
         .success-msg.show { display: block; }
         .success-msg .checkmark { font-size: 1.3rem; margin-right: 8px; }
 
-        /* ── TARGETA CONTACTE DIRECTE ── */
+        /* Contact Card Specifics */
         .contact-info-wrap {
-            animation: fadeInUp 0.9s ease-out 0.45s both;
+            animation: fadeUp 0.9s ease-out 0.45s both;
         }
 
-        .contact-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 24px;
-            padding: 40px 36px;
-            box-shadow: var(--shadow-lg);
+        .contact-card-custom {
             position: relative;
             overflow: hidden;
         }
 
-        /* Detall decoratiu verd subtil a la targeta */
-        .contact-card::before {
+        .contact-card-custom::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
@@ -344,15 +168,6 @@
             border-radius: 24px 24px 0 0;
         }
 
-        .contact-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 32px;
-        }
-
-        /* Ítem de contacte (icona + text) */
         .contact-item {
             display: flex;
             align-items: flex-start;
@@ -383,7 +198,7 @@
             font-weight: 500;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            color: var(--gray-600);
+            color: var(--gray-500);
             margin-bottom: 4px;
         }
 
@@ -397,14 +212,12 @@
         }
         .contact-item-content a:hover { color: var(--accent-dark); }
 
-        /* Separador */
         .contact-divider {
             height: 1px;
             background: var(--gray-200);
             margin: 28px 0;
         }
 
-        /* Nota de resposta */
         .response-note {
             display: flex;
             align-items: center;
@@ -413,7 +226,7 @@
             border-radius: 12px;
             padding: 14px 16px;
             font-size: 0.88rem;
-            color: var(--gray-600);
+            color: var(--gray-500);
             font-weight: 400;
             line-height: 1.4;
         }
@@ -429,96 +242,45 @@
             50% { opacity: 0.6; transform: scale(0.85); }
         }
 
-        /* ── FOOTER ── */
-        footer {
-            background: var(--black);
-            color: rgba(255,255,255,0.5);
-            text-align: center;
-            padding: 32px 40px;
-            font-size: 0.9rem;
-        }
-        footer a {
-            color: var(--white);
-            text-decoration: none;
-            font-family: var(--font-display);
-            font-weight: 800;
-        }
-        footer a span { color: var(--accent); }
-
-        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            nav { padding: 16px 24px; }
-
-            .nav-links {
-                display: none;
-                position: fixed;
-                inset: 0;
-                background: rgba(255,255,255,0.98);
-                backdrop-filter: blur(12px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 32px;
-                z-index: 100;
-            }
-            .nav-links.open { display: flex; }
-            .nav-links a { font-size: 1.2rem; }
-
-            .hamburger { display: flex; }
-
-            .hero-contact { padding: 110px 24px 60px; }
-            .hero-contact h1 { letter-spacing: -0.03em; }
-
             .contact-section {
                 grid-template-columns: 1fr;
                 gap: 40px;
                 padding: 48px 24px 80px;
             }
-
-            .contact-card { padding: 32px 24px; }
-
-            footer { padding: 28px 24px; }
-        }
-
-        @media (max-width: 480px) {
-            .hero-contact { padding: 100px 20px 48px; }
-            .contact-section { padding: 40px 20px 64px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ── NAV ── -->
-    <nav id="main-nav">
-        <a href="index.html" class="nav-logo">EASY<span>-EAT</span></a>
+    <!-- ── HEADER ── -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">EASY<span>-EAT</span></a>
 
-        <!-- Hamburger (mòbil) -->
-        <div class="hamburger" id="hamburger" aria-label="Obrir menú" role="button" tabindex="0">
-            <span></span><span></span><span></span>
+            <nav class="nav-menu">
+                <a href="restaurant.html#funcionalitats" class="nav-link">Funcionalitats</a>
+                <a href="restaurant.html#com-funciona" class="nav-link">Com funciona</a>
+                <a href="restaurant.html#resultats" class="nav-link">Resultats</a>
+                <a href="contact.html" class="nav-link text-accent">Contacte</a>
+                <a href="login.html" class="nav-link">Iniciar sessió</a>
+                <a href="contact.html" class="btn btn-primary">Comença gratis</a>
+            </nav>
+
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
         </div>
+    </header>
 
-        <ul class="nav-links" id="nav-links">
-            <li><a href="restaurant.html#funcionalitats">Funcionalitats</a></li>
-            <li><a href="restaurant.html#com-funciona">Com funciona</a></li>
-            <li><a href="restaurant.html#resultats">Resultats</a></li>
-            <li><a href="contact.html" class="active">Contacte</a></li>
-            <li><a href="login.html" class="nav-login">Iniciar sessió</a></li>
-            <li><a href="contact.html" class="nav-cta">Comença gratis</a></li>
-        </ul>
-    </nav>
-
-    <!-- ─────────────────────────────────────── -->
-    <!-- HERO PETIT -->
-    <!-- ─────────────────────────────────────── -->
+    <!-- ── HERO PETIT ── -->
     <section class="hero-contact">
         <div class="hero-badge">Suport &amp; Contacte</div>
         <h1>Parlem?</h1>
         <p>Tens preguntes? Escriu-nos i et respondrem en menys de 24h.</p>
     </section>
 
-    <!-- ─────────────────────────────────────── -->
-    <!-- SECCIÓ PRINCIPAL: FORMULARI + INFO -->
-    <!-- ─────────────────────────────────────── -->
+    <!-- ── SECCIÓ PRINCIPAL ── -->
     <section class="contact-section">
 
         <!-- COLUMNA ESQUERRA: Formulari -->
@@ -529,65 +291,31 @@
                 <h2>Diga'ns en què<br>podem ajudar-te.</h2>
 
                 <form id="contactForm" novalidate>
-
-                    <!-- Nom -->
                     <div class="form-group">
                         <label for="nom">Nom</label>
-                        <input
-                            type="text"
-                            id="nom"
-                            name="nom"
-                            placeholder="El teu nom"
-                            required
-                            autocomplete="given-name"
-                        >
+                        <input type="text" id="nom" name="nom" placeholder="El teu nom" required autocomplete="given-name">
                     </div>
 
-                    <!-- Nom del Restaurant -->
                     <div class="form-group">
                         <label for="restaurant">Nom del restaurant</label>
-                        <input
-                            type="text"
-                            id="restaurant"
-                            name="restaurant"
-                            placeholder="El nom del teu local"
-                            required
-                            autocomplete="organization"
-                        >
+                        <input type="text" id="restaurant" name="restaurant" placeholder="El nom del teu local" required autocomplete="organization">
                     </div>
 
-                    <!-- Email -->
                     <div class="form-group">
                         <label for="email">Correu electrònic</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="tu@restaurant.com"
-                            required
-                            autocomplete="email"
-                        >
+                        <input type="email" id="email" name="email" placeholder="tu@restaurant.com" required autocomplete="email">
                     </div>
 
-                    <!-- Missatge -->
                     <div class="form-group">
                         <label for="missatge">Missatge</label>
-                        <textarea
-                            id="missatge"
-                            name="missatge"
-                            placeholder="Explica'ns el que necessites..."
-                            required
-                        ></textarea>
+                        <textarea id="missatge" name="missatge" placeholder="Explica'ns el que necessites..." required></textarea>
                     </div>
 
-                    <!-- Botó enviar -->
-                    <button type="submit" class="btn-submit">
+                    <button type="submit" class="btn btn-primary btn-submit">
                         Enviar missatge
                     </button>
-
                 </form>
 
-                <!-- Missatge d'èxit (simulat) -->
                 <div class="success-msg" id="successMsg">
                     <span class="checkmark">✅</span>
                     Gràcies! Et contactarem aviat.
@@ -597,10 +325,9 @@
 
         <!-- COLUMNA DRETA: Informació de contacte -->
         <div class="contact-info-wrap">
-            <div class="contact-card">
+            <div class="card contact-card-custom">
                 <h3>Contacte directe</h3>
 
-                <!-- Telèfon -->
                 <div class="contact-item">
                     <div class="contact-icon">📞</div>
                     <div class="contact-item-content">
@@ -609,7 +336,6 @@
                     </div>
                 </div>
 
-                <!-- Email -->
                 <div class="contact-item">
                     <div class="contact-icon">✉️</div>
                     <div class="contact-item-content">
@@ -618,7 +344,6 @@
                     </div>
                 </div>
 
-                <!-- Localització (opcional) -->
                 <div class="contact-item">
                     <div class="contact-icon">📍</div>
                     <div class="contact-item-content">
@@ -629,7 +354,6 @@
 
                 <div class="contact-divider"></div>
 
-                <!-- Nota de temps de resposta -->
                 <div class="response-note">
                     <div class="dot"></div>
                     Normalment responem en menys de 24 hores.
@@ -640,64 +364,67 @@
     </section>
 
     <!-- ── FOOTER ── -->
-    <footer>
-        <p>© 2025 <a href="restaurant.html">EASY<span>-EAT</span></a> · Plataforma de fidelització per a restaurants</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2025 <a href="restaurant.html" class="logo" style="font-size: 1.1rem; color: #fff;">EASY<span>-EAT</span></a> · Plataforma de fidelització per a restaurants</p>
+            </div>
+        </div>
     </footer>
 
     <!-- ── SCRIPTS ── -->
     <script>
-        /* ── Nav: ombra en scroll ── */
-        const nav = document.getElementById('main-nav');
+        /* ── Header Scroll Effect ── */
+        const header = document.querySelector('.header');
         window.addEventListener('scroll', () => {
-            nav.style.boxShadow = window.scrollY > 20
-                ? '0 2px 20px rgba(0,0,0,0.08)'
-                : 'none';
+            if (window.scrollY > 20) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.boxShadow = 'none';
+                header.style.background = 'rgba(255, 255, 255, 0.9)';
+            }
         });
 
-        /* ── Hamburger menu ── */
+        /* ── Hamburger Menu ── */
         const hamburger = document.getElementById('hamburger');
-        const navLinks  = document.getElementById('nav-links');
 
-        if (hamburger && navLinks) {
+        if (hamburger) {
             hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('open');
-                const isOpen = navLinks.classList.contains('open');
-                hamburger.setAttribute('aria-expanded', isOpen);
+                document.body.classList.toggle('menu-open');
             });
 
-            // Tanca el menú en clicar un link
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => navLinks.classList.remove('open'));
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.body.classList.remove('menu-open');
+                });
             });
         }
 
-        /* ── Formulari: validació bàsica + missatge d'èxit simulat ── */
-        const form       = document.getElementById('contactForm');
+        /* ── Form Validation ── */
+        const form = document.getElementById('contactForm');
         const successMsg = document.getElementById('successMsg');
 
         if (form) {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                // Validació HTML5 nativa
                 if (!form.checkValidity()) {
                     form.reportValidity();
                     return;
                 }
 
-                // Oculta el botó i mostra missatge d'èxit
-                const btn = form.querySelector('.btn-submit');
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
                 btn.disabled = true;
                 btn.textContent = 'Enviant…';
 
-                // Simula retard de xarxa (1.2s)
                 setTimeout(() => {
                     form.reset();
-                    btn.textContent = 'Enviar missatge';
+                    btn.textContent = originalText;
                     btn.disabled = false;
                     successMsg.classList.add('show');
-
-                    // Amaga el missatge d'èxit al cap de 6s
                     setTimeout(() => successMsg.classList.remove('show'), 6000);
                 }, 1200);
             });

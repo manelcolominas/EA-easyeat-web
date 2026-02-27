@@ -5,156 +5,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EASY-EAT</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/style_restaurant.css">
+    <link rel="stylesheet" href="css/global.css">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ── PAGE SPECIFIC STYLES ── */
 
-        :root {
-            --white: #FFFFFF;
-            --black: #0A0A0A;
-            --gray-50: #FAFAFA;
-            --gray-100: #F4F4F4;
-            --gray-200: #E5E5E5;
-            --gray-300: #D4D4D4;
-            --gray-600: #525252;
-            --gray-800: #262626;
-            --accent: #10B981;
-            --accent-light: #34D399;
-            --accent-dark: #059669;
-            --accent-glow: rgba(16, 185, 129, 0.18);
-            --font-display: 'Syne', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* ── TYPOGRAPHY & SIZING ADJUSTMENTS (Matching old_restaurant.html) ── */
 
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-            overflow-x: hidden;
-            width: 100%;
-            position: relative;
-            word-break: break-word; /* Added for mobile text overflow */
-        }
-
-        /* ── NAV ── */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 18px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        .nav-logo.white-text {
-            color: var(--black) !important;
-        }
-
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--black);
-            text-decoration: none;
+        /* Hero Title */
+        .hero-content h1 {
+            font-size: clamp(2.8rem, 6.5vw, 4.5rem);
+            line-height: 1.08;
             letter-spacing: -0.03em;
-            transition: color 0.3s ease;
-            position: relative;
-            z-index: 101;
-        }
-        .nav-logo span { color: var(--accent); }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-            align-items: center;
-            margin: 0;
-            padding: 0;
+            margin-bottom: 28px;
         }
 
-        .nav-links a {
-            font-size: 0.95rem;
-            font-weight: 400;
+        /* Hero Subtitle */
+        .hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.2rem);
+            font-weight: 300;
+            color: var(--gray-600); /* Assegurar color correcte */
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800; /* Bold extra com a l'original */
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+        }
+
+        /* Section Subtitle */
+        .section-sub {
+            font-size: clamp(1rem, 1.8vw, 1.25rem);
+            line-height: 1.75;
             color: var(--gray-600);
-            text-decoration: none;
-            transition: color 0.2s;
         }
-        .nav-links a:hover { color: var(--black); }
 
+        /* Badge (Hero Badge style) */
+        .badge {
+            padding: 8px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 32px;
+        }
+
+        /* ── BUTTON STYLES (Matching old_restaurant.html) ── */
+
+        /* Base Button Overrides */
+        .btn {
+            padding: 18px 36px;
+            font-size: 1.05rem;
+        }
+
+        /* Primary Button (Black with hover effect) */
+        .btn-primary {
+            padding: 18px 52px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--black);
+            background: var(--black);
+            color: var(--white);
+            border-radius: 100px;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: var(--accent);
+            border-radius: 50%;
+            transition: width 0.55s, height 0.55s, top 0.55s, left 0.55s;
+            transform: translate(-50%,-50%);
+            z-index: -1;
+        }
+        .btn-primary:hover::before { width: 350px; height: 350px; }
+        .btn-primary:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            color: white;
+        }
+
+        /* Secondary Button (Outline Gray) */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 18px 36px;
+            background: transparent;
+            color: var(--gray-600);
+            font-size: 1.05rem;
+            font-weight: 400;
+            text-decoration: none;
+            border-radius: 100px;
+            border: 2px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            border-color: var(--gray-400);
+            color: var(--black);
+            background: transparent;
+        }
+
+        /* Accent Button (Green - for Final CTA) */
+        .btn-accent {
+            display: inline-block;
+            padding: 20px 60px;
+            background: var(--accent);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 100px;
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 48px rgba(16,185,129,0.35);
+        }
+        .btn-accent:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+            transform: translateY(-4px);
+            box-shadow: 0 24px 64px rgba(16,185,129,0.45);
+            color: var(--white);
+        }
+
+        /* Ghost Button (Transparent White - for Final CTA) */
+        .btn-ghost {
+            display: inline-block;
+            padding: 20px 44px;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            font-weight: 400;
+            text-decoration: none;
+            border-radius: 100px;
+            border: 2px solid rgba(255,255,255,0.15);
+            transition: all 0.3s ease;
+        }
+        .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+
+        /* Nav CTA (Smaller button) */
         .nav-cta {
             background: var(--black) !important;
             color: var(--white) !important;
             padding: 10px 24px;
             border-radius: 100px;
             font-weight: 500 !important;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
         }
         .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
 
-        .nav-login {
-            font-weight: 600 !important;
-            color: var(--black) !important;
-        }
-        .nav-login:hover {
-            color: var(--accent) !important;
+
+        /* ── ANIMATIONS & EFFECTS ── */
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .hamburger-menu {
-            display: none;
-            cursor: pointer;
-            z-index: 101;
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        .hamburger-menu span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            margin: 5px 0;
-            background-color: var(--black);
-            transition: all 0.3s ease-in-out;
+        @keyframes float-card-1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes float-card-2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
         }
 
-        .hamburger-menu.active span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        .hamburger-menu.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger-menu.active span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-
-        /* ── HERO ── */
-        .hero {
+        /* Hero Section */
+        .hero-custom {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
+            background: linear-gradient(160deg, #FAFAFA 0%, #ffffff 45%, #F0FDF8 100%);
+            padding-top: var(--header-height);
             position: relative;
             overflow: hidden;
-            background: linear-gradient(160deg, #FAFAFA 0%, #ffffff 45%, #F0FDF8 100%);
-            padding-top: 80px;
         }
-        .hero::before {
+        .hero-custom::before {
             content: '';
             position: absolute;
             top: -30%;
@@ -165,7 +210,7 @@
             border-radius: 50%;
             animation: breathe 18s ease-in-out infinite;
         }
-        .hero::after {
+        .hero-custom::after {
             content: '';
             position: absolute;
             bottom: -20%;
@@ -182,58 +227,29 @@
         }
 
         .hero-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr; /* Més espai per al text, menys per al mòbil */
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 60px;
             align-items: center;
+            text-align: left;
             position: relative;
             z-index: 1;
-            padding: 0 40px;
-            text-align: left;
         }
 
-        .hero-content {
-            max-width: none;
-            margin: 0;
-            padding: 0;
-        }
+        /* Animacions d'entrada del Hero */
+        .hero-content h1 { animation: fadeInUp 0.9s ease-out 0.1s both; }
+        .hero-sub { animation: fadeInUp 0.9s ease-out 0.25s both; }
+        .hero-actions { animation: fadeInUp 0.9s ease-out 0.4s both; }
+        .hero-stats { animation: fadeInUp 0.9s ease-out 0.6s both; }
+        .hero-visual { animation: fadeInUp 0.9s ease-out 0.4s both; }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(16,185,129,0.1);
-            color: var(--accent-dark);
-            border: 1px solid rgba(16,185,129,0.25);
-            border-radius: 100px;
-            padding: 8px 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 32px;
-            position: relative; z-index: 1;
-            animation: fadeInUp 0.8s ease-out both;
-        }
-        .hero-badge::before { content: '●'; color: var(--accent); font-size: 0.6rem; }
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.8rem, 6.5vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.08;
-            letter-spacing: -0.03em;
-            margin-bottom: 28px;
-            animation: fadeInUp 0.9s ease-out 0.1s both;
-        }
-        .hero h1 em {
+
+        .hero-content h1 em {
             font-style: normal;
             color: var(--accent);
             position: relative;
         }
-        .hero h1 em::after {
+        .hero-content h1 em::after {
             content: '';
             position: absolute;
             bottom: 4px; left: 0; right: 0;
@@ -242,64 +258,15 @@
             opacity: 0.2;
             border-radius: 4px;
         }
-        .hero-sub {
-            font-size: clamp(1.1rem, 2vw, 1.2rem);
-            font-weight: 300;
-            color: var(--gray-600);
-            max-width: 500px;
-            margin: 0 0 48px 0;
-            line-height: 1.7;
-            animation: fadeInUp 0.9s ease-out 0.25s both;
-        }
+
         .hero-actions {
             display: flex;
             gap: 16px;
             justify-content: flex-start;
             flex-wrap: wrap;
-            animation: fadeInUp 0.9s ease-out 0.4s both;
         }
-        .btn-primary {
-            display: inline-block;
-            padding: 18px 52px;
-            background: var(--black);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-size: 1.05rem;
-            font-weight: 500;
-            text-decoration: none;
-            border-radius: 100px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid var(--black);
-            position: relative; overflow: hidden;
-        }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 0; height: 0;
-            background: var(--accent);
-            border-radius: 50%;
-            transition: width 0.55s, height 0.55s, top 0.55s, left 0.55s;
-            transform: translate(-50%,-50%);
-            z-index: -1;
-        }
-        .btn-primary:hover::before { width: 350px; height: 350px; }
-        .btn-primary:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 18px 36px;
-            background: transparent;
-            color: var(--gray-600);
-            font-size: 1.05rem;
-            font-weight: 400;
-            text-decoration: none;
-            border-radius: 100px;
-            border: 2px solid var(--gray-200);
-            transition: all 0.3s ease;
-        }
-        .btn-secondary:hover { border-color: var(--gray-400); color: var(--black); }
+
+        /* Hero Stats */
         .hero-stats {
             display: flex;
             gap: 60px;
@@ -307,54 +274,31 @@
             margin-top: 80px;
             padding-top: 60px;
             border-top: 1px solid var(--gray-200);
-            position: relative; z-index: 1;
-            animation: fadeInUp 0.9s ease-out 0.6s both;
             flex-wrap: wrap;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 40px;
-            padding-right: 40px;
         }
         .hero-stat { text-align: center; }
         .hero-stat-num {
             font-family: var(--font-display);
             font-size: 2.5rem;
             font-weight: 800;
-            color: var(--black);
             letter-spacing: -0.03em;
             line-height: 1;
         }
-        .hero-stat-num span { color: var(--accent); }
         .hero-stat-label {
             font-size: 0.9rem;
-            color: var(--gray-600);
+            color: var(--gray-500);
             margin-top: 6px;
         }
-        .scroll-indicator {
-            position: absolute;
-            bottom: 36px; left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2.2s ease-in-out infinite;
-            opacity: 0.4;
-            z-index: 1;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-        .scroll-indicator svg { width: 28px; height: 28px; stroke: var(--gray-600); }
 
-        /* Hero visual: floating phone mockup */
+        /* Hero Visual */
         .hero-visual {
             display: flex;
-            justify-content: flex-end; /* Alineat a la dreta */
+            justify-content: flex-end;
             align-items: center;
             position: relative;
             padding: 60px 0;
-            padding-right: 20px; /* Marge extra a la dreta */
+            padding-right: 20px;
         }
-
         .hero-phone {
             width: 280px;
             height: 540px;
@@ -364,17 +308,15 @@
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255,255,255,0.08);
             position: relative;
             animation: float 4s ease-in-out infinite;
+            z-index: 2;
         }
-
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(-2deg); }
             50% { transform: translateY(-16px) rotate(-2deg); }
         }
-
         .hero-phone-screen {
             width: 100%;
             height: 100%;
-            background: linear-gradient(145deg, #1A1209 0%, #3D2A10 100%);
             border-radius: 30px;
             overflow: hidden;
             position: relative;
@@ -382,19 +324,60 @@
             flex-direction: column;
             padding: 24px 20px;
             background: linear-gradient(145deg, var(--accent-dark) 0%, #00704A 100%);
+            color: var(--white);
         }
 
+        /* Floating Cards */
+        .hero-float-card {
+            position: absolute;
+            background: white;
+            border-radius: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            z-index: 3; /* Increased z-index to be above the phone (z-index: 2) */
+        }
+        .float-card-1 {
+            top: 60px;
+            right: -30px;
+            animation: float-card-1 3.5s ease-in-out infinite;
+        }
+        .float-card-2 {
+            bottom: 100px;
+            left: -40px;
+            animation: float-card-2 4s ease-in-out infinite;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 36px; left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2.2s ease-in-out infinite;
+            opacity: 0.4;
+            z-index: 1;
+            color: var(--gray-600);
+        }
+        .scroll-indicator svg { width: 28px; height: 28px; stroke: currentColor; }
+
+        /* Phone Content Styles */
         .phone-status-bar {
             display: flex;
             justify-content: space-between;
             font-size: 0.65rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.5);
             margin-bottom: 20px;
         }
 
         .phone-greeting {
             font-size: 0.75rem;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.5);
             margin-bottom: 4px;
         }
 
@@ -406,15 +389,16 @@
         }
 
         .phone-points-card {
-            background: rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.1);
             border-radius: 20px;
             padding: 18px;
             margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .phone-points-label {
             font-size: 0.65rem;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255,255,255,0.75);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 4px;
@@ -429,7 +413,7 @@
 
         .phone-points-sub {
             font-size: 0.65rem;
-            color: rgba(255,255,255,0.8);
+            color: var(--accent-light);
             margin-top: 2px;
         }
 
@@ -440,7 +424,7 @@
         }
 
         .phone-badge-item {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.1);
             border-radius: 12px;
             padding: 8px 10px;
             text-align: center;
@@ -455,7 +439,7 @@
 
         .phone-badge-label {
             font-size: 0.55rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.6);
         }
 
         .phone-activity {
@@ -464,7 +448,7 @@
 
         .phone-activity-title {
             font-size: 0.65rem;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.4);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 10px;
@@ -475,12 +459,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
         .phone-activity-name {
             font-size: 0.7rem;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.7);
         }
 
         .phone-activity-pts {
@@ -489,47 +473,7 @@
             font-weight: 600;
         }
 
-        /* Floating cards around phone */
-        .hero-float-card {
-            position: absolute;
-            background: white;
-            border-radius: 16px;
-            padding: 12px 16px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--black);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
-
-        .float-card-1 {
-            top: 60px;
-            right: -30px;
-            animation: float-card-1 3.5s ease-in-out infinite;
-        }
-
-        .float-card-2 {
-            bottom: 100px;
-            left: -40px;
-            animation: float-card-2 4s ease-in-out infinite;
-        }
-
-        @keyframes float-card-1 {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        @keyframes float-card-2 {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(8px); }
-        }
-
-
-        /* ── SHARED ── */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-        section { padding: 130px 0; }
+        /* Section Specifics */
         .section-label {
             font-size: 0.8rem;
             font-weight: 500;
@@ -540,122 +484,37 @@
             display: block;
         }
         .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -0.025em;
             margin-bottom: 24px;
         }
         .section-sub {
-            font-size: clamp(1rem, 1.8vw, 1.25rem);
-            color: var(--gray-600);
-            line-height: 1.75;
             max-width: 700px;
         }
         .center { text-align: center; }
         .center .section-sub { margin: 0 auto; }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(28px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-on-scroll {
+
+        /* Scroll Animations Class */
+        .fade-up {
             opacity: 0;
             transform: translateY(28px);
             transition: all 0.75s cubic-bezier(0.4,0,0.2,1);
         }
-        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* ── PROBLEM ── */
-        .problem { background: var(--gray-50); text-align: center; }
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 32px;
-            margin-top: 72px;
-        }
-        .problem-card {
-            padding: 44px 32px;
-            background: var(--white);
-            border-radius: 20px;
-            border: 1px solid var(--gray-200);
-            text-align: left;
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-            opacity: 0;
-            transform: translateY(28px);
-        }
-        .problem-card.visible { opacity: 1; transform: translateY(0); }
-        .problem-card:hover { transform: translateY(-8px); box-shadow: 0 24px 64px rgba(0,0,0,0.08); border-color: var(--accent-light); }
-        .problem-icon { font-size: 2rem; margin-bottom: 20px; display: block; }
-        .problem-card h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
-        .problem-card p { color: var(--gray-600); font-size: 0.98rem; line-height: 1.75; }
-
-        /* ── REVELATION ── */
-        .revelation {
-            background: var(--black);
-            color: var(--white);
-            text-align: center;
-            padding: 140px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .revelation::before {
-            content: '';
-            position: absolute;
-            top: -40%; left: 50%;
-            transform: translateX(-50%);
-            width: 1000px; height: 1000px;
-            background: radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 65%);
-            border-radius: 50%;
-        }
-        .revelation-eyebrow {
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 32px;
-            display: block;
-            position: relative; z-index: 1;
-        }
-        .revelation-text {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5.5vw, 5rem);
-            font-weight: 800;
-            line-height: 1.15;
-            max-width: 900px;
-            margin: 0 auto 48px;
-            letter-spacing: -0.03em;
-            position: relative; z-index: 1;
-        }
-        .revelation-text em {
-            font-style: normal;
-            color: var(--accent-light);
-        }
-        .revelation-sub {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.55);
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 300;
-            position: relative; z-index: 1;
-        }
-
-        /* ── HOW IT WORKS ── */
-        .how { background: var(--white); }
-        .how-header { margin-bottom: 80px; }
-        .how-steps { display: flex; flex-direction: column; gap: 0; }
+        /* How it works */
+        .how-steps { display: flex; flex-direction: column; gap: 0; margin-top: 80px; }
         .how-step {
             display: grid;
             grid-template-columns: 80px 1fr;
             gap: 40px;
             padding: 56px 0;
             border-top: 1px solid var(--gray-200);
+            /* Animació */
             opacity: 0;
             transform: translateY(24px);
             transition: all 0.6s ease-out;
         }
-        .how-step:last-child { border-bottom: 1px solid var(--gray-200); }
         .how-step.visible { opacity: 1; transform: translateY(0); }
+        .how-step:last-child { border-bottom: 1px solid var(--gray-200); }
         .step-num {
             font-family: var(--font-display);
             font-size: 1rem;
@@ -663,42 +522,32 @@
             color: var(--accent);
             padding-top: 4px;
         }
-        .step-body {}
-        .step-body h3 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 14px; }
-        .step-body p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.8; max-width: 680px; }
         .step-tag {
             display: inline-block;
             margin-top: 20px;
-            background: rgba(16,185,129,0.08);
-            color: var(--accent-dark);
-            border-radius: 100px;
-            padding: 6px 18px;
-            font-size: 0.85rem;
-            font-weight: 500;
         }
 
-        /* ── FEATURES ── */
-        .features { background: var(--black); color: var(--white); }
-        .features-header { margin-bottom: 80px; }
-        .features-header .section-sub { color: rgba(255,255,255,0.5); }
+        /* Features */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2px;
-            background: #1a1a1a;
-            border-radius: 24px;
+            background: var(--black-soft);
+            border-radius: var(--radius-lg);
             overflow: hidden;
+            margin-top: 80px;
         }
         .feature-card {
             background: var(--black);
             padding: 56px 44px;
             transition: background 0.3s ease;
+            /* Animació */
             opacity: 0;
             transform: translateY(24px);
             transition: background 0.3s, opacity 0.6s, transform 0.6s;
         }
         .feature-card.visible { opacity: 1; transform: translateY(0); }
-        .feature-card:hover { background: #111111; }
+        .feature-card:hover { background: #111; }
         .feature-num {
             font-family: var(--font-display);
             font-size: 0.75rem;
@@ -709,117 +558,23 @@
             display: block;
         }
         .feature-icon { font-size: 2.4rem; margin-bottom: 24px; display: block; }
-        .feature-card h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; color: var(--white); }
-        .feature-card p { color: rgba(255,255,255,0.5); font-size: 0.98rem; line-height: 1.75; }
 
-        /* ── PSYCHOLOGY ── */
-        .psychology { background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%); }
-        .psych-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-            margin-top: 80px;
-        }
-        .psych-left {}
-        .psych-quotes { display: flex; flex-direction: column; gap: 20px; }
-        .quote-card {
-            background: var(--white);
-            padding: 32px 36px;
-            border-radius: 16px;
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-            opacity: 0;
-            transform: translateX(-24px);
-            transition: all 0.5s ease-out;
-        }
-        .quote-card.visible { opacity: 1; transform: translateX(0); }
-        .quote-card p {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--gray-800);
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        .quote-card p::before {
-            content: '"';
-            color: var(--accent);
-            font-size: 2.5rem;
-            font-family: Georgia, serif;
-            line-height: 0;
-            margin-right: 6px;
-            vertical-align: -12px;
-        }
-        .psych-right {}
-        .psych-insight {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 52px 44px;
-            box-shadow: 0 8px 48px rgba(0,0,0,0.08);
-        }
-        .psych-insight h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 20px; }
-        .psych-insight p { color: var(--gray-600); line-height: 1.8; margin-bottom: 20px; }
-        .psych-insight p:last-of-type { margin-bottom: 0; }
-        .psych-highlight {
-            background: rgba(16,185,129,0.08);
-            border: 1px solid rgba(16,185,129,0.2);
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin-top: 28px;
-        }
-        .psych-highlight p { color: var(--accent-dark); font-weight: 500; margin: 0; }
-
-        /* ── REWARDS ── */
-        .rewards { background: var(--white); text-align: center; }
-        .rewards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 28px;
-            margin-top: 72px;
-        }
-        .reward-card {
-            background: var(--gray-50);
-            border-radius: 24px;
-            border: 1px solid var(--gray-200);
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-            opacity: 0;
-            transform: scale(0.96);
-        }
-        .reward-card.visible { opacity: 1; transform: scale(1); }
-        .reward-card:hover { transform: translateY(-10px) scale(1.01); box-shadow: 0 28px 72px rgba(16,185,129,0.15); border-color: var(--accent); background: var(--white); }
-        .reward-icon {
-            width: 76px; height: 76px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, var(--accent-light), var(--accent));
-            border-radius: 20px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2.2rem;
-        }
-        .reward-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
-        .reward-card p { color: var(--gray-600); font-size: 0.95rem; line-height: 1.65; }
-
-        /* ── RESULTS ── */
-        .results { background: var(--black); color: var(--white); text-align: center; }
-        .results .section-sub { color: rgba(255,255,255,0.5); margin: 0 auto; }
+        /* Results Section Styles */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2px;
             margin-top: 72px;
-            background: #1a1a1a;
-            border-radius: 24px;
+            background: var(--black-soft);
+            border-radius: var(--radius-lg);
             overflow: hidden;
         }
         .stat-card {
             background: var(--black);
             padding: 60px 40px;
             text-align: center;
-            opacity: 0;
-            transform: scale(0.9);
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .stat-card.visible { opacity: 1; transform: scale(1); }
         .stat-card:hover { background: #0f0f0f; }
         .stat-number {
             font-family: var(--font-display);
@@ -833,7 +588,6 @@
         .stat-label { font-size: 1.1rem; color: rgba(255,255,255,0.5); line-height: 1.55; }
 
         /* ── GAMIFICATION ── */
-        .gamification { background: var(--gray-50); }
         .gamification-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -865,10 +619,7 @@
         }
         .game-name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
         .game-level { font-size: 0.8rem; color: var(--accent-dark); font-weight: 500; }
-        .game-points {
-            text-align: center;
-            margin-bottom: 28px;
-        }
+        .game-points { text-align: center; margin-bottom: 28px; }
         .game-points-num {
             font-family: var(--font-display);
             font-size: 3.5rem;
@@ -876,11 +627,11 @@
             color: var(--black);
             letter-spacing: -0.04em;
         }
-        .game-points-label { font-size: 0.85rem; color: var(--gray-600); margin-top: 4px; }
+        .game-points-label { font-size: 0.85rem; color: var(--gray-500); margin-top: 4px; }
         .game-bar-container { margin-bottom: 24px; }
-        .game-bar-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--gray-600); margin-bottom: 8px; }
+        .game-bar-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--gray-500); margin-bottom: 8px; }
         .game-bar-track { background: var(--gray-100); border-radius: 100px; height: 8px; overflow: hidden; }
-        .game-bar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent-light), var(--accent)); width: 68%; transition: width 1.5s ease; }
+        .game-bar-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent-light), var(--accent)); width: 68%; }
         .game-badge-row { display: flex; gap: 10px; flex-wrap: wrap; }
         .game-badge {
             background: rgba(16,185,129,0.1);
@@ -893,10 +644,9 @@
         }
         .game-features { display: flex; flex-direction: column; gap: 28px; }
         .game-feature h4 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
-        .game-feature p { color: var(--gray-600); font-size: 0.98rem; line-height: 1.7; }
+        .game-feature p { color: var(--gray-500); font-size: 0.98rem; line-height: 1.7; }
 
         /* ── COMPETITION ── */
-        .competition { background: var(--white); }
         .competition-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -912,7 +662,6 @@
         }
         .leaderboard-title {
             font-family: var(--font-display);
-            font-size: 1rem;
             font-weight: 700;
             margin-bottom: 28px;
             color: rgba(255,255,255,0.7);
@@ -926,7 +675,6 @@
             gap: 16px;
             padding: 14px 0;
             border-bottom: 1px solid rgba(255,255,255,0.06);
-            transition: all 0.2s;
         }
         .leaderboard-row:last-child { border-bottom: none; }
         .leaderboard-row.you {
@@ -940,9 +688,6 @@
         .lb-rank.top { color: var(--accent-light); }
         .lb-name { flex: 1; font-size: 0.95rem; }
         .lb-pts { font-family: var(--font-display); font-weight: 700; color: var(--accent-light); font-size: 0.95rem; }
-        .competition-text {}
-        .competition-text h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
-        .competition-text p { color: var(--gray-600); line-height: 1.8; margin-bottom: 20px; }
         .comp-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
         .comp-chip {
             background: var(--gray-100);
@@ -953,8 +698,7 @@
             font-weight: 500;
         }
 
-        /* ── DASHBOARD PREVIEW ── */
-        .dashboard { background: var(--gray-50); }
+        /* ── DASHBOARD ── */
         .dashboard-mockup {
             background: var(--white);
             border-radius: 24px;
@@ -983,7 +727,7 @@
             padding: 28px 24px;
             border: 1px solid var(--gray-200);
         }
-        .dash-metric-label { font-size: 0.8rem; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+        .dash-metric-label { font-size: 0.8rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
         .dash-metric-value { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--black); letter-spacing: -0.02em; }
         .dash-metric-change { font-size: 0.8rem; color: var(--accent-dark); font-weight: 500; margin-top: 6px; }
         .dash-metric.accent-bg { background: var(--accent); border-color: var(--accent); }
@@ -997,17 +741,14 @@
             border: 1px solid var(--gray-200);
             display: flex; flex-direction: column;
         }
-        .dash-chart-title { font-size: 0.8rem; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 20px; }
+        .dash-chart-title { font-size: 0.8rem; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 20px; }
         .dash-bars { display: flex; align-items: flex-end; gap: 8px; flex: 1; height: 80px; }
         .dash-bar-item { flex: 1; border-radius: 4px 4px 0 0; background: var(--gray-200); transition: height 1s ease; }
         .dash-bar-item.accent { background: var(--accent); }
 
-        /* ── FINAL CTA ── */
+        /* Final CTA */
         .final-cta {
-            background: var(--black);
-            color: var(--white);
             text-align: center;
-            padding: 90px 0;
             position: relative; overflow: hidden;
         }
         .final-cta::before {
@@ -1020,303 +761,286 @@
             border-radius: 50%;
         }
         .final-cta h2 {
-            font-family: var(--font-display);
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
             letter-spacing: -0.03em;
             line-height: 1.15;
-            max-width: 900px;
-            margin: 0 auto 32px;
-            position: relative; z-index: 1;
+            margin-bottom: 32px;
         }
         .final-cta h2 em { font-style: normal; color: var(--accent-light); }
         .final-cta p {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.5);
             max-width: 520px;
             margin: 0 auto 56px;
-            font-weight: 300;
-            position: relative; z-index: 1;
         }
         .final-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
-        .btn-accent {
-            display: inline-block;
-            padding: 20px 60px;
-            background: var(--accent);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 100px;
-            border: 2px solid var(--accent);
-            transition: all 0.3s ease;
-            box-shadow: 0 12px 48px rgba(16,185,129,0.35);
-        }
-        .btn-accent:hover { background: var(--accent-light); border-color: var(--accent-light); transform: translateY(-4px); box-shadow: 0 24px 64px rgba(16,185,129,0.45); }
-        .btn-ghost {
-            display: inline-block;
-            padding: 20px 44px;
-            background: transparent;
-            color: rgba(255,255,255,0.7);
-            font-size: 1.1rem;
-            font-weight: 400;
-            text-decoration: none;
-            border-radius: 100px;
-            border: 2px solid rgba(255,255,255,0.15);
-            transition: all 0.3s ease;
-        }
-        .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
 
-        /* ── FOOTER ── */
-        footer {
-            background: #060606;
-            color: rgba(255,255,255,0.35);
-            padding: 48px 40px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        footer span { color: var(--accent); }
+        /* ── RESPONSIVE ADJUSTMENTS ── */
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
-            nav { padding: 16px 24px; }
-            .hamburger-menu { display: block; }
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: -24px;
-                width: calc(100% + 48px);
-                flex-direction: column;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-                padding: 20px 0;
-                border-bottom: 1px solid var(--gray-200);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            }
-            .nav-links.active { display: flex; }
-            .nav-links li { width: 100%; text-align: center; }
-            .nav-links a { padding: 15px 0; display: block; width: 100%; font-size: 1.1rem; color: var(--black); }
-            .nav-cta {
-                margin: 10px auto 0;
-                display: inline-block;
-                width: auto;
-            }
-
-            section { padding: 90px 0; }
-            .container { padding: 0 24px; }
-            .psych-grid, .gamification-grid, .competition-grid { grid-template-columns: 1fr; gap: 40px; }
-            .dash-body { grid-template-columns: 1fr 1fr; }
-            .dash-chart { grid-column: span 2; }
-            .hero-stats { gap: 36px; padding-top: 48px; flex-direction: column; }
-            .hero-stat { margin-bottom: 20px; }
-            .how-step { grid-template-columns: 1fr; gap: 20px; text-align: center; }
-            .step-num { margin: 0 auto; }
-            .features-grid { grid-template-columns: 1fr; }
-            .problem-grid { gap: 24px; }
-            .problem-card { padding: 32px 24px; }
-            .psych-grid { gap: 48px; }
-            .quote-card { padding: 24px; }
-            .quote-card p { font-size: 1.1rem; }
-            .psych-insight { padding: 32px 24px; }
-            .leaderboard, .game-visual { padding: 32px 24px; }
-            .competition-text h3 { font-size: 1.8rem; }
-            .dash-body { padding: 24px; }
-
-            /* Hero specific responsive adjustments */
-            .hero-inner {
+            /* Layout */
+            .hero-inner,
+            .gamification-grid,
+            .competition-grid,
+            .how-step {
                 grid-template-columns: 1fr;
-                gap: 48px;
+                gap: 40px;
                 text-align: center;
             }
 
-            .hero-visual { order: -1; } /* Move phone to top on mobile */
-            .hero-phone { width: 220px; height: 420px; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero-sub { max-width: 100%; margin-left: auto; margin-right: auto; }
+            /* Hero */
+            .hero-visual { order: -1; }
+            .hero-phone { width: 240px; height: 460px; margin: 0 auto; }
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
             .hero-actions { justify-content: center; }
-            .hero-float-card { display: none; } /* Hide floating cards on smaller screens */
+            .hero-stats { flex-direction: column; gap: 32px; }
+            .hero-float-card { display: none; }
+
+            /* Dashboard */
+            .dash-body { grid-template-columns: 1fr 1fr; }
+            .dash-chart { grid-column: span 2; }
+
+            /* Typography */
+            .hero-content h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
         }
 
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero-sub { font-size: 1.1rem; }
-            .hero-actions { flex-direction: column; align-items: stretch; }
-            .btn-primary, .btn-secondary, .btn-accent, .btn-ghost { width: 100%; max-width: 340px; text-align: center; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px; }
-            .final-actions { align-items: stretch; }
-            .final-cta h2 { font-size: 2.2rem; }
-
-            .section-title { font-size: 1.8rem; }
-            .section-sub { font-size: 1rem; }
-
-            .dash-body { grid-template-columns: 1fr; }
+            /* Grids */
+            .features-grid,
+            .stats-grid,
+            .dash-body {
+                grid-template-columns: 1fr;
+            }
             .dash-chart { grid-column: span 1; }
-            .stats-grid, .features-grid { grid-template-columns: 1fr; }
-            .rewards-grid { gap: 20px; }
-            .reward-card { padding: 32px 24px; }
-            .how-header { margin-bottom: 60px; }
+
+            /* Hero */
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-sub { font-size: 1.1rem; }
+
+            /* Buttons */
+            .hero-actions { flex-direction: column; width: 100%; }
+            .btn, .btn-primary, .btn-secondary, .btn-accent, .btn-ghost {
+                width: 100%;
+                max-width: 100%;
+                justify-content: center;
+            }
+            .final-actions { flex-direction: column; width: 100%; }
+
+            /* Spacing */
+            .section { padding: 60px 0; }
+            .container { padding: 0 20px; }
+
+            /* Specifics */
             .how-step { padding: 40px 0; }
-            .step-body h3 { font-size: 1.5rem; }
-            .feature-card { padding: 40px 28px; }
-            .psychology { padding: 80px 0; }
-            .psych-grid { margin-top: 48px; }
-            .competition-grid { margin-top: 48px; }
-            .gamification-grid { margin-top: 48px; }
+            .feature-card { padding: 40px 24px; }
+            .stat-card { padding: 40px 20px; }
+            .game-visual, .leaderboard { padding: 32px 20px; }
+            .dash-body { padding: 20px; }
+        }
+
+        /* ── MOBILE MENU OVERRIDES (Robust Fix) ── */
+        @media (max-width: 900px) {
+            /* Force hamburger visibility */
+            .hamburger {
+                display: flex !important;
+            }
+
+            /* Reset and override nav-menu styles */
+            .nav-menu {
+                display: none !important; /* Hide by default */
+                position: absolute !important;
+                top: 100% !important; /* Below header */
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                bottom: auto !important; /* Override global bottom:0 */
+
+                flex-direction: column !important;
+                background: #ffffff !important;
+                padding: 20px 0 !important;
+                border-bottom: 1px solid var(--gray-200) !important;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
+
+                transform: none !important;
+                transition: none !important;
+                z-index: 9999 !important;
+                overflow-y: visible !important; /* Allow content to flow */
+            }
+
+            .nav-menu.active {
+                display: flex !important; /* Show when active */
+            }
+
+            .nav-menu .nav-link {
+                padding: 15px 20px !important;
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+                font-size: 1.1rem !important;
+                color: var(--black) !important;
+                border-bottom: 1px solid var(--gray-100) !important;
+                margin: 0 !important;
+            }
+
+            .nav-menu .nav-cta {
+                margin: 25px auto !important;
+                display: inline-block !important;
+                width: auto !important;
+            }
+
+            /* Hamburger Animation */
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
         }
     </style>
 
 </head>
 <body>
 
-    <!-- ── NAV ── -->
-    <nav>
-        <a href="#" class="nav-logo">EASY<span>-EAT</span></a>
-        <div class="hamburger-menu" id="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#com-funciona">Com funciona</a></li>
-            <li><a href="#funcionalitats">Beneficis</a></li>
-            <li><a href="#resultats">Resultats</a></li>
-            <li><a href="contact.html">Contacte</a></li>
-            <li><a href="login.html" class="nav-login">Iniciar sessió</a></li>
-            <li><a href="contact.html" class="nav-cta">Descarrega</a></li>
-        </ul>
-    </nav>
+    <div id="header"></div>
 
     <!-- ── HERO ── -->
-    <section class="hero">
-        <div class="hero-inner">
-            <!-- Text principal -->
-            <div class="hero-content">
-                <span class="hero-badge">Plataforma de fidelització per a restaurants</span>
-                <h1>Fes que cada visita compti.<em> Converteix els</em> clients ocasionals<em> en clients fidels</em></h1>
-                <p class="hero-sub">Transforma cada visita en una oportunitat perquè els clients tornin.</p>
-                <div class="hero-actions">
-                    <a href="contact.html" class="btn-primary">Comença ara, és gratis</a>
-                    <a href="#com-funciona" class="btn-secondary">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-                        Descobreix com funciona
-                    </a>
-                </div>
-            </div>
-
-            <!-- Visual: mockup mòbil -->
-            <div class="hero-visual">
-                <div class="hero-phone">
-                    <div class="hero-phone-screen">
-                        <div class="phone-status-bar">
-                            <span>09:41</span>
-                            <span>●●●</span>
-                        </div>
-                        <div class="phone-greeting">Bon dia,</div>
-                        <div class="phone-name">Restaurant La Taverna 👋</div>
-
-                        <div class="phone-points-card">
-                            <div class="phone-points-label">Clients actius</div>
-                            <div class="phone-points-value">847</div>
-                            <div class="phone-points-sub">+23% vs mes anterior</div>
-                        </div>
-
-                        <div class="phone-badges">
-                            <div class="phone-badge-item">
-                                <span class="phone-badge-icon">📈</span>
-                                <div class="phone-badge-label">Creixement</div>
-                            </div>
-                            <div class="phone-badge-item">
-                                <span class="phone-badge-icon">⭐</span>
-                                <div class="phone-badge-label">Top 3</div>
-                            </div>
-                            <div class="phone-badge-item">
-                                <span class="phone-badge-icon">🎁</span>
-                                <div class="phone-badge-label">Recomp.</div>
-                            </div>
-                        </div>
-
-                        <div class="phone-activity">
-                            <div class="phone-activity-title">Activitat recent</div>
-                            <div class="phone-activity-item">
-                                <span class="phone-activity-name">Nova recompensa</span>
-                                <span class="phone-activity-pts">Menú degustació</span>
-                            </div>
-                            <div class="phone-activity-item">
-                                <span class="phone-activity-name">Client VIP</span>
-                                <span class="phone-activity-pts">Marc Puig</span>
-                            </div>
-                            <div class="phone-activity-item">
-                                <span class="phone-activity-name">Nova valoració</span>
-                                <span class="phone-activity-pts">5 estrelles</span>
-                            </div>
-                        </div>
+    <section class="section hero-custom">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <span class="badge badge-accent">Plataforma de fidelització per a restaurants</span>
+                    <h1>Fes que cada visita compti.<em> Converteix els</em> clients ocasionals<em> en clients fidels</em></h1>
+                    <p class="hero-sub">Transforma cada visita en una oportunitat perquè els clients tornin.</p>
+                    <div class="hero-actions">
+                        <a href="contact.html" class="btn btn-primary">Comença ara, és gratis</a>
+                        <a href="#com-funciona" class="btn btn-secondary">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                            Descobreix com funciona
+                        </a>
                     </div>
                 </div>
 
-                <!-- Targetes flotants -->
-                <div class="hero-float-card float-card-1">
-                    📈 +23% clients actius!
-                </div>
-                <div class="hero-float-card float-card-2">
-                    🎁 Nova recompensa creada
-                </div>
-            </div>
-        </div>
+                <div class="hero-visual">
+                    <div class="hero-phone">
+                        <div class="hero-phone-screen">
+                            <div class="phone-status-bar">
+                                <span>09:41</span>
+                                <span>●●●</span>
+                            </div>
+                            <div class="phone-greeting">Bon dia,</div>
+                            <div class="phone-name">Restaurant La Taverna 👋</div>
 
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="hero-stat-num"><span>+4</span>x</div>
-                <div class="hero-stat-label">Els clients amb punts<br>tornen fins a 4 vegades més</div>
+                            <div class="phone-points-card">
+                                <div class="phone-points-label">Clients actius</div>
+                                <div class="phone-points-value">847</div>
+                                <div class="phone-points-sub">+23% vs mes anterior</div>
+                            </div>
+
+                            <div class="phone-badges">
+                                <div class="phone-badge-item">
+                                    <span class="phone-badge-icon">📈</span>
+                                    <div class="phone-badge-label">Creixement</div>
+                                </div>
+                                <div class="phone-badge-item">
+                                    <span class="phone-badge-icon">⭐</span>
+                                    <div class="phone-badge-label">Top 3</div>
+                                </div>
+                                <div class="phone-badge-item">
+                                    <span class="phone-badge-icon">🎁</span>
+                                    <div class="phone-badge-label">Recomp.</div>
+                                </div>
+                            </div>
+
+                            <div class="phone-activity">
+                                <div class="phone-activity-title">Activitat recent</div>
+                                <div class="phone-activity-item">
+                                    <span class="phone-activity-name">Nova recompensa</span>
+                                    <span class="phone-activity-pts">Menú degustació</span>
+                                </div>
+                                <div class="phone-activity-item">
+                                    <span class="phone-activity-name">Client VIP</span>
+                                    <span class="phone-activity-pts">Marc Puig</span>
+                                </div>
+                                <div class="phone-activity-item">
+                                    <span class="phone-activity-name">Nova valoració</span>
+                                    <span class="phone-activity-pts">5 estrelles</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Targetes flotants afegides -->
+                    <div class="hero-float-card float-card-1">
+                        📈 +23% clients actius!
+                    </div>
+                    <div class="hero-float-card float-card-2">
+                        🎁 Nova recompensa creada
+                    </div>
+                </div>
             </div>
-            <div class="hero-stat">
-                <div class="hero-stat-num"><span>73</span>%</div>
-                <div class="hero-stat-label">Dels clients tornen en<br>menys de 2 setmanes</div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-num"><span class="text-accent">+4</span>x</div>
+                    <div class="hero-stat-label">Els clients amb punts<br>tornen fins a 4 vegades més</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num"><span class="text-accent">73</span>%</div>
+                    <div class="hero-stat-label">Dels clients tornen en<br>menys de 2 setmanes</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-num"><span class="text-accent">+25</span>%</div>
+                    <div class="hero-stat-label">+25% d’augment en la <br>despesa mitjana per client</div>
+                </div>
             </div>
-            <div class="hero-stat">
-                <div class="hero-stat-num">+<span>25</span>%</div>
-                <div class="hero-stat-label">+25% d’augment en la <br>despesa mitjana per client</div>
+
+            <!-- Scroll Indicator afegit -->
+            <div class="scroll-indicator">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-            </svg>
         </div>
     </section>
 
     <!-- ── HOW IT WORKS ── -->
-    <section class="how" id="com-funciona">
+    <section class="section" id="com-funciona">
         <div class="container">
-            <div class="how-header">
-                <span class="section-label animate-on-scroll">Com funciona</span>
-                <h2 class="section-title animate-on-scroll">Tres passos senzills.<br>Un sistema que treballa sol.</h2>
-                <p class="section-sub animate-on-scroll">EASY-EAT s'integra al teu procés habitual sense canviar res de com treballes. El sistema fa la feina en segon pla.</p>
+            <div class="center">
+                <span class="section-label fade-up">Com funciona</span>
+                <h2 class="section-title fade-up">Tres passos senzills.<br>Un sistema que treballa sol.</h2>
+                <p class="section-sub fade-up">EASY-EAT s'integra al teu procés habitual sense canviar res de com treballes. El sistema fa la feina en segon pla.</p>
             </div>
             <div class="how-steps">
-                <div class="how-step">
+                <div class="how-step fade-up">
                     <div class="step-num">01</div>
                     <div class="step-body">
                         <h3>Acumula punts automàticament</h3>
                         <p>Cada visita genera punts de manera automàtica. El teu equip només ha de seguir el procés habitual.</p>
-                        <span class="step-tag">⚡ Configuració en menys de 10 minuts</span>
+                        <span class="badge badge-accent step-tag">⚡ Configuració en menys de 10 minuts</span>
                     </div>
                 </div>
-                <div class="how-step">
+                <div class="how-step fade-up">
                     <div class="step-num">02</div>
                     <div class="step-body">
                         <h3>Els punts es converteixen en recompenses</h3>
                         <p>Decideix les recompenses: un postre, un plat especial o un àpat gratuït. Els clients veuen els punts en temps real i saben exactament quan arriben a la seva recompensa.</p>
-                        <span class="step-tag">🎁 Recompenses 100% personalitzables</span>
+                        <span class="badge badge-accent step-tag">🎁 Recompenses 100% personalitzables</span>
                     </div>
                 </div>
-                <div class="how-step">
+                <div class="how-step fade-up">
                     <div class="step-num">03</div>
                     <div class="step-body">
                         <h3>Coneix i millora</h3>
                         <p>Analitza les dades del teu panell: freqüència de visites, patrons de consum i recompenses preferides. Això t’ajuda a prendre decisions més encertades i a oferir una millor experiència.</p>
-                        <span class="step-tag">📊 Estadístiques en temps real</span>
+                        <span class="badge badge-accent step-tag">📊 Estadístiques en temps real</span>
                     </div>
                 </div>
             </div>
@@ -1324,15 +1048,15 @@
     </section>
 
     <!-- ── FEATURES ── -->
-    <section class="features" id="funcionalitats">
+    <section class="section section-bg-black" id="funcionalitats">
         <div class="container">
-            <div class="features-header center">
-                <span class="section-label animate-on-scroll" style="color: var(--accent);">Funcionalitats</span>
-                <h2 class="section-title animate-on-scroll" style="color: var(--white);">Tot el que necessites<br>en una sola eina</h2>
-                <p class="section-sub animate-on-scroll">Des de la fidelització bàsica fins a la gamificació i la intel·ligència per conèixer millor els teus clients.</p>
+            <div class="center">
+                <span class="section-label text-accent fade-up">Funcionalitats</span>
+                <h2 class="section-title text-white fade-up">Tot el que necessites<br>en una sola eina</h2>
+                <p class="section-sub fade-up">Des de la fidelització bàsica fins a la gamificació i la intel·ligència per conèixer millor els teus clients.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card fade-up">
                     <span class="feature-num">01 — FIDELITZACIÓ</span>
                     <span class="feature-icon">
                         <svg width="32" height="32" style="color: #f87171;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9 9 0 100-18 9 9 0 000 18z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15a3 3 0 100-6 3 3 0 000 6z" /></svg>
@@ -1340,15 +1064,15 @@
                     <h3>Sistema de punts automàtic</h3>
                     <p>Acumulació automàtica per cada visita. Multiplica punts en dates especials, en hores vall o per a plats amb més marge. Tu controles les regles.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card fade-up">
                     <span class="feature-num">02 — ANALÍTICA</span>
                     <span class="feature-icon">
                         <svg width="32" height="32" style="color: #60a5fa;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
                     </span>
                     <h3>Estadístiques i accions recomanades</h3>
-                    <p>Detecta a temps quins clients necessiten un petit impuls per tornar. Identifica els teus clients estrella. Detecta els patrons de consum per dia, hora i temporada.</p>
+                    <p>Detecta a temps quins clients necessiten un petit impuls per tornar. Identifica els teus clients estrella.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card fade-up">
                     <span class="feature-num">03 — GAMIFICACIÓ</span>
                     <span class="feature-icon">
                         <svg width="32" height="32" style="color: #fbbf24;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 15.375A7.454 7.454 0 018.479 12.2m5-3.172V4.5h-1.875a1.875 1.875 0 00-1.875 1.875v.75c0 2.182 1.01 4.15 2.604 5.375m-5.354-5.375v-.75A1.875 1.875 0 018.875 4.5h1.875v4.528M13.5 4.5h-3" /></svg>
@@ -1356,7 +1080,7 @@
                     <h3>Nivells, distintius i reptes</h3>
                     <p>Converteix la fidelitat en una experiència de joc. Els clients pugen de nivell, desbloquegen distintius exclusius i reben reptes setmanals que els fan tornar amb més freqüència.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card fade-up">
                     <span class="feature-num">04 — COMPETÈNCIA</span>
                     <span class="feature-icon">
                         <svg width="32" height="32" style="color: #f472b6;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
@@ -1364,7 +1088,7 @@
                     <h3>Rànquing entre restaurants</h3>
                     <p>Compara el teu rendiment de fidelització amb altres restaurants similars. Veu on estàs i on pots millorar per guanyar quota de clients al teu barri.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card fade-up">
                     <span class="feature-num">05 — COMUNICACIÓ</span>
                     <span class="feature-icon">
                         <svg width="32" height="32" style="color: #34d399;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
@@ -1372,7 +1096,7 @@
                     <h3>Notificacions automàtiques</h3>
                     <p>Recorda als clients que els falta poc per a la seva recompensa. Envia ofertes personalitzades en el moment clau. Sense feina manual per al teu equip.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card fade-up">
                     <span class="feature-num">06 — INTEGRACIÓ</span>
                     <span class="feature-icon">
                         <svg width="32" height="32" style="color: #a78bfa;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
@@ -1384,13 +1108,36 @@
         </div>
     </section>
 
-    <!-- ── GAMIFICATION ── -->
-    <section class="gamification">
+    <!-- ── RESULTS ── -->
+    <section class="section section-bg-black results-section" id="resultats">
         <div class="container">
-            <span class="section-label animate-on-scroll">Gamificació</span>
-            <h2 class="section-title animate-on-scroll">Converteix la fidelitat<br>en una experiència de joc</h2>
+            <div class="center">
+                <h2 class="section-title text-white fade-up">Els resultats</h2>
+                <div class="stats-grid">
+                    <div class="stat-card fade-up">
+                        <div class="stat-number">+4x</div>
+                        <div class="stat-label">Els clients amb punts<br>tornen fins a 4 vegades més</div>
+                    </div>
+                    <div class="stat-card fade-up">
+                        <div class="stat-number">73%</div>
+                        <div class="stat-label">Dels clients tornen en<br>menys de 2 setmanes</div>
+                    </div>
+                    <div class="stat-card fade-up">
+                        <div class="stat-number">+25%</div>
+                        <div class="stat-label">+25% d’augment en la<br>despesa mitjana per client</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── GAMIFICATION ── -->
+    <section class="section section-bg-gray">
+        <div class="container">
+            <span class="section-label fade-up">Gamificació</span>
+            <h2 class="section-title fade-up">Converteix la fidelitat<br>en una experiència de joc</h2>
             <div class="gamification-grid">
-                <div class="game-visual animate-on-scroll">
+                <div class="game-visual fade-up">
                     <div class="game-header">
                         <div class="game-avatar">👨‍🍳</div>
                         <div>
@@ -1417,7 +1164,7 @@
                         <span class="game-badge">⭐ VIP</span>
                     </div>
                 </div>
-                <div class="game-features animate-on-scroll">
+                <div class="game-features fade-up">
                     <div class="game-feature">
                         <h4>🏆 Nivells de membre</h4>
                         <p>Bronze, Plata, Or i Platí. Cada nivell desbloqueja privilegis exclusius: taules reservades, menús especials, accés anticipat a novetats.</p>
@@ -1436,12 +1183,12 @@
     </section>
 
     <!-- ── COMPETITION ── -->
-    <section class="competition">
+    <section class="section">
         <div class="container">
-            <span class="section-label animate-on-scroll">Intel·ligència competitiva</span>
-            <h2 class="section-title animate-on-scroll">Coneix millor el teu entorn<br>i pren decisions encertades</h2>
+            <span class="section-label fade-up">Intel·ligència competitiva</span>
+            <h2 class="section-title fade-up">Coneix millor el teu entorn<br>i pren decisions encertades</h2>
             <div class="competition-grid">
-                <div class="leaderboard animate-on-scroll">
+                <div class="leaderboard fade-up">
                     <div class="leaderboard-title">Rànquing del barri · Fidelització</div>
                     <div class="leaderboard-row">
                         <div class="lb-rank top">🥇</div>
@@ -1469,7 +1216,7 @@
                         <div class="lb-pts">65 pts</div>
                     </div>
                 </div>
-                <div class="competition-text animate-on-scroll">
+                <div class="competition-text fade-up">
                     <h3>Entendre el teu entorn t’ajuda a créixer amb més seguretat.</h3>
                     <p>EASY-EAT et mostra una visió agregada del rendiment de fidelització al teu sector. Identifica oportunitats per millorar, descobrir patrons i sorprendre els teus clients.</p>
                     <p>Una visió global que t’ajuda a prendre decisions amb més perspectiva i confiança.</p>
@@ -1485,12 +1232,12 @@
     </section>
 
     <!-- ── DASHBOARD PREVIEW ── -->
-    <section class="dashboard">
+    <section class="section section-bg-gray">
         <div class="container center">
-            <span class="section-label animate-on-scroll">Panell de control</span>
-            <h2 class="section-title animate-on-scroll">Totes les dades que necessites.<br>Sense complicacions.</h2>
-            <p class="section-sub animate-on-scroll">Un panell intuïtiu i visual dissenyat per a propietaris de restaurants. Consulta tot el que necessites i pren decisions ràpides.</p>
-            <div class="dashboard-mockup animate-on-scroll">
+            <span class="section-label fade-up">Panell de control</span>
+            <h2 class="section-title fade-up">Totes les dades que necessites.<br>Sense complicacions.</h2>
+            <p class="section-sub fade-up">Un panell intuïtiu i visual dissenyat per a propietaris de restaurants. Consulta tot el que necessites i pren decisions ràpides.</p>
+            <div class="dashboard-mockup fade-up">
                 <div class="dash-bar">
                     <div class="dash-dots">
                         <div class="dash-dot red"></div>
@@ -1532,180 +1279,108 @@
         </div>
     </section>
 
-    <!-- ── RESULTS ── -->
-    <section class="results" id="resultats">
-        <div class="container center">
-            <h2 class="section-title animate-on-scroll" style="color: var(--white);">Els resultats</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">+4x</div>
-                    <div class="stat-label">Els clients amb punts<br>tornen fins a 4 vegades més</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">73%</div>
-                    <div class="stat-label">Dels clients tornen en<br>menys de 2 setmanes</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">+25%</div>
-                    <div class="stat-label">+25% d’augment en la<br>dispesa mitjana per client</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ── FINAL CTA ── -->
-    <section class="final-cta" id="contacte">
-        <div class="container">
-            <h2>No competeixes pel producte.<br> <em>Competeixes pel</em> motiu per tornar.</h2>
-            <p>Configura EASY-EAT en menys de 10 minuts. Sense permanències i totalment gratuït.</p>
-            <div class="final-actions">
+    <section class="section section-bg-black final-cta" id="contacte">
+        <div class="container center">
+            <h2 class="text-white fade-up">No competeixes pel producte.<br> <em>Competeixes pel</em> motiu per tornar.</h2>
+            <p class="section-sub fade-up">Configura EASY-EAT en menys de 10 minuts. Sense permanències i totalment gratuït.</p>
+            <div class="final-actions fade-up">
                 <a href="contact.html" class="btn-accent">Comença gratis avui</a>
                 <a href="contact.html" class="btn-ghost">Parla amb nosaltres →</a>
             </div>
         </div>
     </section>
 
-    <!-- ── FOOTER ── -->
-    <footer>
-        <p>© 2025 <a href="#" class="nav-logo" style="font-size: 1.1rem; color: #fff;">EASY<span>-EAT</span></a> · Plataforma de fidelització per a restaurants</p>
-    </footer>
+    <div id="footer"></div>
+
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        document.addEventListener("DOMContentLoaded", function() {
+            // Funció per carregar contingut HTML
+            function loadComponent(url, elementId) {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById(elementId).innerHTML = data;
+                        // Si s'ha carregat el header, reinicialitzem el menú hamburguesa
+                        if (elementId === 'header') {
+                            initializeHamburgerMenu();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                        document.getElementById(elementId).innerHTML = `<p>Error loading content from ${url}. Please check the console for details.</p>`;
+                    });
+            }
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+            // Carregar header i footer
+            loadComponent('header.html', 'header');
+            loadComponent('footer.html', 'footer');
 
-        // Observe all animated elements
-        document.querySelectorAll('.animate-on-scroll, .problem-card, .how-step, .feature-card, .reward-card, .quote-card, .stat-card').forEach(el => {
-            observer.observe(el);
-        });
+            // Funció per inicialitzar el menú hamburguesa
+            function initializeHamburgerMenu() {
+                const hamburger = document.getElementById('hamburger');
+                const navMenu = document.querySelector('.nav-menu');
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                if (hamburger && navMenu) {
+                    hamburger.addEventListener('click', () => {
+                        hamburger.classList.toggle('active');
+                        navMenu.classList.toggle('active');
+                        document.body.classList.toggle('menu-open');
                     });
                 }
-            });
-        });
+            }
 
-        // Add stagger delay to grid items
-        const addStaggerDelay = (selector, baseDelay = 100) => {
-            document.querySelectorAll(selector).forEach((el, index) => {
-                el.style.transitionDelay = `${index * baseDelay}ms`;
-            });
-        };
+            // Smooth scroll for anchor links (delegat al body per funcionar amb contingut dinàmic)
+            document.body.addEventListener('click', function(e) {
+                if (e.target.matches('a[href^="#"]')) {
+                    e.preventDefault();
+                    document.body.classList.remove('menu-open');
+                    const hamburger = document.getElementById('hamburger');
+                    const navMenu = document.querySelector('.nav-menu');
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (navMenu) navMenu.classList.remove('active');
 
-        addStaggerDelay('.problem-card', 150);
-        addStaggerDelay('.how-step', 200);
-        addStaggerDelay('.feature-card', 150);
-        addStaggerDelay('.reward-card', 120);
-        addStaggerDelay('.quote-card', 150);
-        addStaggerDelay('.stat-card', 200);
-
-        // Change logo color based on background
-        const navLogo = document.querySelector('.nav-logo');
-        const darkSections = document.querySelectorAll('.revelation, .features, .results, .final-cta, footer');
-
-        const logoObserverOptions = {
-            threshold: 0.1,
-            rootMargin: '-50px 0px -90% 0px' // Adjust rootMargin to trigger when the section is near the top
-        };
-
-        const logoObserver = new IntersectionObserver((entries) => {
-            let isDarkSectionVisible = false;
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    isDarkSectionVisible = true;
+                    const target = document.querySelector(e.target.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
 
-            if (isDarkSectionVisible) {
-                navLogo.classList.add('white-text');
-            } else {
-                // Check if we are currently in any dark section
-                let inDark = false;
-                darkSections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    // Simple check if the top of the viewport is within the section (considering nav height)
-                    if (rect.top <= 50 && rect.bottom >= 50) {
-                        inDark = true;
+            // Intersection Observer millorat
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
-                if (!inDark) {
-                    navLogo.classList.remove('white-text');
-                }
-            }
-        }, logoObserverOptions);
+            }, observerOptions);
 
-        darkSections.forEach(section => {
-            logoObserver.observe(section);
-        });
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        // Fallback scroll event listener for more precise control if IntersectionObserver is tricky with fixed headers
-        window.addEventListener('scroll', () => {
-            let inDark = false;
-            const navHeight = document.querySelector('nav').offsetHeight || 60;
-            const checkPoint = navHeight / 2; // Check point near the top of the screen
-
-            darkSections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top <= checkPoint && rect.bottom >= checkPoint) {
-                    inDark = true;
-                }
-            });
-
-            if (inDark) {
-                navLogo.classList.add('white-text');
-            } else {
-                navLogo.classList.remove('white-text');
-            }
-        });
-
-        // Nav: afegir ombra en scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 20) {
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
-        });
-
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger-menu');
-        const navLinks = document.getElementById('nav-links');
-
-        if (hamburger && navLinks) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navLinks.classList.toggle('active');
-            });
-
-            // Close menu when a link is clicked
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navLinks.classList.remove('active');
+            // Stagger delay (Retard escalonat)
+            const addStaggerDelay = (selector, baseDelay = 100) => {
+                document.querySelectorAll(selector).forEach((el, index) => {
+                    el.style.transitionDelay = `${index * baseDelay}ms`;
                 });
-            });
-        }
+            };
+
+            addStaggerDelay('.how-step', 200);
+            addStaggerDelay('.feature-card', 150);
+            addStaggerDelay('.hero-stat', 200);
+            addStaggerDelay('.stat-card', 200);
+        });
     </script>
-    <script src="scripts/restaurant.js"> </script>
 </body>
 </html>
