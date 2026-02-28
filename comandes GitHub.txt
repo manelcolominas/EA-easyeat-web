@@ -71,6 +71,12 @@ git remote add origin https://github.com/manelcolominas/EA-JS.git
 git remote add origin https://github.com/manelcolominas/EA-TS.git
 
 
+###
+
+git checkout develop		# Canviar a la branca develop
+git checkout -b nom_branca		# Crea la nova branca
+git push -u origin nom_branca	# Puja-la a GitHub
+
 
 ## Conceptes Bàsics ##
 git hash -> es per saber si el contingut d'un objecte ha canviat o no. per això guardarem els hash al git per saber si un projecte ha canviat o no o si esteu treballant en un mateix projecte igual.

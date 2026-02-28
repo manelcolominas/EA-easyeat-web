@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termes del Servei · EASY-EAT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        /* ── Reset i base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: #FAFAF8;
+            color: #1A1A1A;
+            line-height: 1.8;
+            font-size: 16px;
+            padding-top: var(--header-height);
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* ── Page Title Header ── */
+        .page-title-header {
+            background-color: #111111;
+            color: #FFFFFF;
+            padding: 48px 24px 40px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .page-title-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        .page-title-header .meta {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ── Contenidor principal ── */
+        main {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 24px 96px;
+        }
+
+        /* ── Índex ── */
+        .index-box {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-left: 4px solid #10B981;
+            border-radius: 8px;
+            padding: 28px 32px;
+            margin-bottom: 56px;
+        }
+
+        .index-box h2 {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #10B981;
+            margin-bottom: 16px;
+        }
+
+        .index-box ol {
+            padding-left: 20px;
+            color: #4B5563;
+        }
+
+        .index-box ol li {
+            margin-bottom: 6px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+
+        .index-box ol li a {
+            color: #111111;
+            text-decoration: none;
+        }
+
+        .index-box ol li a:hover { color: #10B981; }
+
+        /* ── Seccions ── */
+        section {
+            margin-bottom: 52px;
+            scroll-margin-top: calc(var(--header-height) + 24px);
+        }
+
+        section h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #111111;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        section h2 .num {
+            background: #111111;
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        p {
+            color: #374151;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+            color: #374151;
+        }
+
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+
+        /* ── Caixa de contacte ── */
+        .contact-box {
+            background: #F0FDF4;
+            border: 1px solid #A7F3D0;
+            border-radius: 8px;
+            padding: 24px 28px;
+            margin-top: 8px;
+        }
+
+        .contact-box p {
+            margin-bottom: 6px;
+            color: #065F46;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+
+        .contact-box strong {
+            color: #064E3B;
+        }
+
+        /* ── Avís destacat ── */
+        .highlight-box {
+            background: #FFFBEB;
+            border-left: 4px solid #F59E0B;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #92400E;
+            font-size: 0.9rem;
+        }
+
+        .warning-box {
+            background: #FEF2F2;
+            border-left: 4px solid #EF4444;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: #991B1B;
+            font-size: 0.9rem;
+        }
+
+        /* ── Nav CTA (Copied from restaurant.html) ── */
+        .nav-cta {
+            background: var(--black) !important;
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-weight: 500 !important;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+        /* ── MOBILE MENU OVERRIDES ── */
+        @media (max-width: 900px) {
+            .hamburger { display: flex !important; }
+            .nav-menu {
+                display: none !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                bottom: auto !important;
+                flex-direction: column !important;
+                background: #ffffff !important;
+                padding: 20px 0 !important;
+                border-bottom: 1px solid var(--gray-200) !important;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
+                transform: none !important;
+                transition: none !important;
+                z-index: 9999 !important;
+                overflow-y: visible !important;
+            }
+            .nav-menu.active { display: flex !important; }
+            .nav-menu .nav-link {
+                padding: 15px 20px !important;
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+                font-size: 1.1rem !important;
+                color: var(--black) !important;
+                border-bottom: 1px solid var(--gray-100) !important;
+                margin: 0 !important;
+            }
+            .nav-menu .nav-cta {
+                margin: 25px auto !important;
+                display: inline-block !important;
+                width: auto !important;
+            }
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div class="page-title-header fade-up">
+        <h1>Termes del Servei</h1>
+        <p class="meta">Última actualització: 24 de maig de 2024</p>
+    </div>
+
+    <main>
+
+        <!-- Índex de continguts -->
+        <nav class="index-box fade-up" aria-label="Índex de continguts">
+            <h2>Continguts</h2>
+            <ol>
+                <li><a href="#titular">Identificació del titular del lloc web</a></li>
+                <li><a href="#objecte">Objecte</a></li>
+                <li><a href="#condicions">Condicions d'ús</a></li>
+                <li><a href="#registre">Registre d'usuaris</a></li>
+                <li><a href="#plans">Plans i condicions econòmiques</a></li>
+                <li><a href="#propietat">Propietat intel·lectual i industrial</a></li>
+                <li><a href="#responsabilitat">Responsabilitat i limitació de garanties</a></li>
+                <li><a href="#enllacos">Enllaços a tercers</a></li>
+                <li><a href="#modificacions">Modificacions dels termes</a></li>
+                <li><a href="#resolucio">Resolució del contracte</a></li>
+                <li><a href="#legislacio">Legislació aplicable i jurisdicció</a></li>
+                <li><a href="#contacte">Contacte</a></li>
+            </ol>
+        </nav>
+
+        <!-- Introducció -->
+        <section class="fade-up">
+            <p>
+                Els presents Termes del Servei (d'ara endavant, els "<strong>Termes</strong>") regulen l'accés i l'ús del lloc web i de la plataforma de serveis (d'ara endavant, el "<strong>Servei</strong>") posats a disposició pels seus titulars. L'accés i l'ús del Servei implica l'acceptació plena i sense reserves dels presents Termes per part de l'usuari o del representant legal de l'entitat que accedeixi al Servei.
+            </p>
+            <p>
+                Si no accepteu la totalitat d'aquests Termes, us preguem que us abstingueu d'usar el Servei. En cas de discrepància entre els presents Termes i qualsevol acord escrit signat entre les parts, prevaldrà l'acord escrit.
+            </p>
+        </section>
+
+        <!-- 1. Titular del lloc web -->
+        <section id="titular" class="fade-up">
+            <h2><span class="num" aria-hidden="true">1</span>Identificació del titular del lloc web</h2>
+            <p>En compliment del que estableix la Llei 34/2002, d'11 de juliol, de serveis de la societat de la informació i de comerç electrònic (<strong>LSSICE</strong>), s'informa que el titular del lloc web és:</p>
+            <div class="contact-box">
+                <!-- PERSONALITZAR: Substitueix totes les dades de l'empresa -->
+                <p><strong>Denominació social:</strong> [NOM DE L'EMPRESA, S.L.]</p>
+                <p><strong>NIF/CIF:</strong> [B00000000]</p>
+                <p><strong>Domicili social:</strong> [Carrer Exemple, 00, 00000 Barcelona, Catalunya]</p>
+                <p><strong>Registre:</strong> [Inscrita al Registre Mercantil de Barcelona, Tom 00000, Foli 000, Full B-000000]</p>
+                <p><strong>Correu electrònic:</strong> <a href="mailto:hola@exemple.com">hola@exemple.com</a></p>
+                <p><strong>Telèfon:</strong> [+34 900 000 000]</p>
+                <!-- PERSONALITZAR: Afegiu o ajusteu les dades d'inscripció registral -->
+            </div>
+        </section>
+
+        <!-- 2. Objecte -->
+        <section id="objecte" class="fade-up">
+            <h2><span class="num" aria-hidden="true">2</span>Objecte</h2>
+            <p>
+                <!-- PERSONALITZAR: Descriu el servei principal de la teva empresa -->
+                El Servei consisteix en una plataforma de fidelització de clients orientada al sector de la restauració, que permet als titulars de negocis de restauració gestionar programes de fidelització, analitzar dades de clients i dissenyar campanyes de retenció personalitzades (d'ara endavant, el "<strong>Servei</strong>").
+            </p>
+            <p>
+                El titular es reserva el dret a ampliar, modificar, suspendre o cessar el Servei o qualsevol de les seves funcionalitats en qualsevol moment, notificant-ho als usuaris registrats amb la màxima antelació possible.
+            </p>
+        </section>
+
+        <!-- 3. Condicions d'ús -->
+        <section id="condicions" class="fade-up">
+            <h2><span class="num" aria-hidden="true">3</span>Condicions d'ús</h2>
+            <p>L'usuari s'compromet a fer un ús del Servei conforme a la llei, a la moral i a l'ordre públic, i en particular es compromet a:</p>
+            <ul>
+                <li>No emprar el Servei per a fins il·lícits, fraudulents o contraris als presents Termes.</li>
+                <li>No reproduir, distribuir, modificar ni transmetre cap contingut del Servei sense autorització expressa del titular.</li>
+                <li>No realitzar accions que puguin causar danys, sobrecarregar, inutilitzar o deteriorar el Servei, els seus servidors o les xarxes connectades.</li>
+                <li>No intentar accedir a zones, sistemes o xarxes del Servei que no estiguin disponibles de forma pública.</li>
+                <li>Proporcionar informació veraç, completa i actualitzada en el moment del registre i durant tot el període de vigència de la relació.</li>
+                <li>Mantenir la confidencialitat de les seves credencials d'accés i no cedir-les a tercers.</li>
+                <li>Notificar immediatament al titular qualsevol ús no autoritzat del compte o qualsevol bretxa de seguretat de la qual tingui coneixement.</li>
+            </ul>
+            <div class="warning-box">
+                <p><strong>Ús prohibit:</strong> Queda expressament prohibit l'ús del Servei per a la difusió de continguts il·legals, difamatoris, obscens, discriminatoris o que puguin atemptar contra els drets de tercers. L'incompliment d'aquesta prohibició podrà comportar la suspensió o cancel·lació immediata del compte.</p>
+            </div>
+        </section>
+
+        <!-- 4. Registre d'usuaris -->
+        <section id="registre" class="fade-up">
+            <h2><span class="num" aria-hidden="true">4</span>Registre d'usuaris</h2>
+            <p>L'accés a determinades funcionalitats del Servei requereix el registre previ de l'usuari mitjançant la creació d'un compte personal. Per completar el registre, caldrà facilitar la informació sol·licitada al formulari d'alta, que haurà de ser veraç i actualitzada.</p>
+            <p>L'usuari és responsable de mantenir la confidencialitat de les seves credencials d'accés (nom d'usuari i contrasenya) i de totes les activitats que es realitzin des del seu compte. En cas de pèrdua, robatori o ús no autoritzat de les credencials, l'usuari haurà de notificar-ho immediatament al titular a través dels canals de contacte indicats.</p>
+            <p>El titular es reserva el dret a cancel·lar o suspendre un compte en cas que es detecti qualsevol ús contrari als presents Termes o a la normativa aplicable.</p>
+            <div class="highlight-box">
+                <p>El registre es limita a persones majors de 18 anys o, en el cas d'entitats jurídiques, a persones amb capacitat legal per obligar-les contractualment.</p>
+            </div>
+        </section>
+
+        <!-- 5. Plans i condicions econòmiques -->
+        <section id="plans" class="fade-up">
+            <h2><span class="num" aria-hidden="true">5</span>Plans i condicions econòmiques</h2>
+            <p>
+                <!-- PERSONALITZAR: Descriu els plans de preus i les condicions de facturació -->
+                El Servei pot estar disponible sota plans gratuïts i plans de pagament. Les condicions econòmiques específiques de cada pla (tarifes, periodicitat de facturació, funcionalitats incloses i condicions de renovació) s'especifiquen a la pàgina de preus del lloc web o en el contracte subscrit entre les parts.
+            </p>
+            <p>En cas de plans de pagament:</p>
+            <ul>
+                <li>Les quotes es facturaran per avançat, amb la periodicitat acordada (mensual o anual).</li>
+                <li>El pagament es realitzarà a través dels mètodes de pagament acceptats i indicats durant el procés de contractació.</li>
+                <li>La falta de pagament en el termini establert podrà comportar la suspensió temporal o la resolució del servei, prèvia notificació a l'usuari.</li>
+                <li>Les tarifes no inclouen impostos, taxes o gravàmens que puguin ser aplicables, els quals aniran a càrrec de l'usuari.</li>
+                <!-- PERSONALITZAR: Afegiu condicions de cancel·lació i reemborsament específiques -->
+            </ul>
+        </section>
+
+        <!-- 6. Propietat intel·lectual -->
+        <section id="propietat" class="fade-up">
+            <h2><span class="num" aria-hidden="true">6</span>Propietat intel·lectual i industrial</h2>
+            <p>Tots els continguts del lloc web i del Servei, incloent-hi, a títol enunciatiu i no limitatiu, els textos, imatges, logotips, dissenys, icones, codi font, programari, bases de dades, marques, noms comercials i qualsevol altra obra o signe distintiu, són propietat del titular o de tercers que n'han autoritzat l'ús, i estan protegits per la legislació vigent en matèria de propietat intel·lectual i industrial.</p>
+            <p>Queda expressament prohibit:</p>
+            <ul>
+                <li>Reproduir, copiar, distribuir, comunicar públicament, transformar o modificar els continguts del Servei sense autorització prèvia i per escrit del titular.</li>
+                <li>Suprimir o manipular qualsevol dispositiu de protecció o drets de propietat intel·lectual del titular o de tercers.</li>
+                <li>Emprar els continguts del Servei per a fins comercials sense l'autorització expressa del titular.</li>
+            </ul>
+            <p>La llicència d'ús del Servei que es concedeix a l'usuari és no exclusiva, intransferible i revocable, limitada a l'ús del Servei per als fins establerts en els presents Termes.</p>
+
+            <p><strong>Continguts de l'usuari:</strong> En la mesura que l'usuari pugui incorporar continguts propis al Servei (dades, textos, imatges, etc.), l'usuari declara que disposa dels drets necessaris sobre aquests continguts i atorga al titular una llicència no exclusiva per utilitzar-los únicament als efectes de prestar el Servei contractat.</p>
+        </section>
+
+        <!-- 7. Responsabilitat -->
+        <section id="responsabilitat" class="fade-up">
+            <h2><span class="num" aria-hidden="true">7</span>Responsabilitat i limitació de garanties</h2>
+            <p>El titular es compromet a mantenir el Servei disponible de forma continuada i amb els estàndards de qualitat adequats, però no garanteix la disponibilitat ininterrompuda ni l'absència d'errors. En particular:</p>
+            <ul>
+                <li>El titular no serà responsable dels danys o perjudicis derivats d'interrupcions del Servei causades per manteniment, fallades tècniques, atacs informàtics o causes de força major.</li>
+                <li>El titular no serà responsable dels danys indirectes, lucre cessant, pèrdua de dades o dany emergent derivats de l'ús o la impossibilitat d'ús del Servei.</li>
+                <li>El titular no garanteix que el Servei satisfaci les necessitats particulars de cada usuari ni que estigui lliure d'errors o vulnerabilitats.</li>
+                <li>L'usuari és responsable de la veracitat i exactitud de les dades que introdueix al Servei i de les decisions que prengui basat en la informació obtinguda a través d'aquest.</li>
+            </ul>
+            <div class="highlight-box">
+                <p>En qualsevol cas, la responsabilitat màxima del titular enfront de l'usuari quedarà limitada a l'import abonat per l'usuari en els darrers dotze (12) mesos pel Servei, excepte en casos de dol o culpa greu.</p>
+            </div>
+        </section>
+
+        <!-- 8. Enllaços externs -->
+        <section id="enllacos" class="fade-up">
+            <h2><span class="num" aria-hidden="true">8</span>Enllaços a tercers</h2>
+            <p>El lloc web pot contenir enllaços a llocs web de tercers, els quals s'ofereixen únicament com a referència i per a la comoditat dels usuaris. El titular no controla ni és responsable dels continguts, serveis, polítiques de privacitat, pràctiques o opinions d'aquests llocs web de tercers.</p>
+            <p>L'accés i l'ús de llocs web de tercers es realitza sota la responsabilitat exclusiva de l'usuari i es regeix per les condicions d'ús i polítiques de privacitat pròpies de cada lloc web. El titular recomana als usuaris que llegeixin detingudament les condicions i polítiques de privacitat de qualsevol lloc web de tercers que visitin.</p>
+            <p>L'existència d'un enllaç al lloc web del titular no implica cap mena d'associació, patrocini o aprovació dels continguts de la web de destinació per part del titular.</p>
+        </section>
+
+        <!-- 9. Modificacions -->
+        <section id="modificacions" class="fade-up">
+            <h2><span class="num" aria-hidden="true">9</span>Modificacions dels termes</h2>
+            <p>El titular es reserva el dret a modificar els presents Termes en qualsevol moment, per adaptar-los a canvis legislatius, jurisprudencials, de pràctica empresarial o per millorar el Servei. Les modificacions entraran en vigor en el moment de la seva publicació al lloc web, excepte en el cas de modificacions substancials, en les quals es notificarà als usuaris registrats amb una antelació mínima de trenta (30) dies naturals a través del correu electrònic associat al compte o mitjançant un avís visible al Servei.</p>
+            <p>Si l'usuari continua fent ús del Servei un cop entrades en vigor les modificacions, s'entendrà que les accepta. En cas contrari, l'usuari podrà resoldre el contracte conforme al que s'indica a la clàusula de resolució.</p>
+        </section>
+
+        <!-- 10. Resolució -->
+        <section id="resolucio" class="fade-up">
+            <h2><span class="num" aria-hidden="true">10</span>Resolució del contracte</h2>
+            <p>Qualsevol de les parts podrà resoldre la relació contractual en els supòsits i amb les condicions següents:</p>
+            <ul>
+                <li><strong>Per voluntat de l'usuari:</strong> L'usuari podrà donar de baixa el seu compte en qualsevol moment a través de les opcions de configuració del compte o sol·licitant-ho al servei d'atenció al client. En el cas de plans de pagament, la baixa tindrà efecte al final del període de facturació en curs, sense dret a reemborsament de les quantitats ja abonades, llevat que s'acordi altrament.</li>
+                <li><strong>Per incompliment de l'usuari:</strong> El titular podrà suspendre o resoldre el compte de l'usuari, amb efecte immediat i sense necessitat de preavís, en cas d'incompliment dels presents Termes, de la legislació aplicable o de qualsevol altra condició d'ús del Servei.</li>
+                <li><strong>Per cessament del Servei:</strong> El titular podrà cessar la prestació del Servei, notificant-ho als usuaris amb una antelació mínima de trenta (30) dies naturals.</li>
+            </ul>
+        </section>
+
+        <!-- 11. Legislació -->
+        <section id="legislacio" class="fade-up">
+            <h2><span class="num" aria-hidden="true">11</span>Legislació aplicable i jurisdicció</h2>
+            <p>Els presents Termes es regeixen i s'interpreten d'acord amb la legislació espanyola. Per a la resolució de qualsevol controvèrsia o conflicte que pugui derivar-se de la interpretació o l'aplicació dels presents Termes, les parts se sotmeten, amb renúncia expressa a qualsevol altre fur que pogués correspondre'ls, als Jutjats i Tribunals de la ciutat de Barcelona.</p>
+            <p>No obstant l'anterior, en cas que l'usuari tingui la condició de consumidor, serà d'aplicació la normativa de consum vigent i la jurisdicció serà la del lloc del domicili del consumidor.</p>
+            <p>La Comissió Europea posa a disposició dels consumidors una plataforma de resolució de litigis en línia accessible a través del següent enllaç: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a>.</p>
+        </section>
+
+        <!-- 12. Contacte -->
+        <section id="contacte" class="fade-up">
+            <h2><span class="num" aria-hidden="true">12</span>Contacte</h2>
+            <p>Per a qualsevol consulta, reclamació o comunicació relacionada amb els presents Termes del Servei, l'usuari pot posar-se en contacte amb el titular per les vies següents:</p>
+            <div class="contact-box">
+                <!-- PERSONALITZAR: Substitueix les dades de contacte -->
+                <p><strong>Correu electrònic:</strong> <a href="mailto:hola@exemple.com">hola@exemple.com</a></p>
+                <p><strong>Adreça postal:</strong> [NOM DE L'EMPRESA] · [Carrer Exemple, 00] · [00000 Barcelona]</p>
+                <p><strong>Formulari de contacte:</strong> <a href="contact.html">Accediu al formulari</a></p>
+                <p><strong>Telèfon d'atenció al client:</strong> [+34 900 000 000]</p>
+            </div>
+            <p style="margin-top: 20px;">El titular es compromet a atendre les comunicacions rebudes en un termini raonable i, en tot cas, en el termini màxim establert per la normativa aplicable.</p>
+        </section>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Funció per carregar contingut HTML
+            function loadComponent(url, elementId) {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById(elementId).innerHTML = data;
+                        // Post-load processing
+                        if (elementId === 'header') {
+                            initializeHamburgerMenu();
+                            updateNavLinks();
+                        }
+                        if (elementId === 'footer') {
+                            updateFooterLinks();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                        document.getElementById(elementId).innerHTML = `<p>Error loading content from ${url}. Please check the console for details.</p>`;
+                    });
+            }
+
+            // Carregar header i footer
+            loadComponent('header.html', 'header');
+            loadComponent('footer.html', 'footer');
+
+            // Funció per inicialitzar el menú hamburguesa
+            function initializeHamburgerMenu() {
+                const hamburger = document.getElementById('hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+
+                if (hamburger && navMenu) {
+                    hamburger.addEventListener('click', () => {
+                        hamburger.classList.toggle('active');
+                        navMenu.classList.toggle('active');
+                        document.body.classList.toggle('menu-open');
+                    });
+                }
+            }
+
+            // Funció per actualitzar els enllaços de navegació per a subpàgines
+            function updateNavLinks() {
+                const navLinks = document.querySelectorAll('#header .nav-menu a[href^="#"]');
+                navLinks.forEach(link => {
+                    const targetId = link.getAttribute('href');
+                    link.setAttribute('href', 'restaurant.html' + targetId);
+                });
+                const logoLink = document.querySelector('#header .logo');
+                if (logoLink) {
+                    logoLink.setAttribute('href', 'restaurant.html');
+                }
+            }
+
+            function updateFooterLinks() {
+                const footerAnchorLinks = document.querySelectorAll('#footer a[href^="#"]');
+                footerAnchorLinks.forEach(link => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId !== '#') {
+                        link.setAttribute('href', 'restaurant.html' + targetId);
+                    } else {
+                        link.setAttribute('href', 'restaurant.html');
+                    }
+                });
+            }
+
+            // Smooth scroll for anchor links (delegat al body per funcionar amb contingut dinàmic)
+            document.body.addEventListener('click', function(e) {
+                const link = e.target.closest('a[href^="#"]');
+                if (link) {
+                    const href = link.getAttribute('href');
+                    // Only prevent default for same-page anchors
+                    if (document.querySelector(href)) {
+                        e.preventDefault();
+
+                        const hamburger = document.getElementById('hamburger');
+                        const navMenu = document.querySelector('.nav-menu');
+                        if (hamburger && hamburger.classList.contains('active')) {
+                            hamburger.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            document.body.classList.remove('menu-open');
+                        }
+
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                }
+            });
+
+            // Intersection Observer per a animacions
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

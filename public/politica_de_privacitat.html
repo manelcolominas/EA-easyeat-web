@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacitat · EASY-EAT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        /* ── Reset i base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: #FAFAF8;
+            color: #1A1A1A;
+            line-height: 1.8;
+            font-size: 16px;
+            padding-top: var(--header-height);
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* ── Page Title Header ── */
+        .page-title-header {
+            background-color: #111111;
+            color: #FFFFFF;
+            padding: 48px 24px 40px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .page-title-header h1 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            color: #FFFFFF;
+        }
+
+        .page-title-header .meta {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ── Contenidor principal ── */
+        main {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 24px 96px;
+        }
+
+        /* ── Índex ── */
+        .index-box {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-left: 4px solid #10B981;
+            border-radius: 8px;
+            padding: 28px 32px;
+            margin-bottom: 56px;
+        }
+
+        .index-box h2 {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #10B981;
+            margin-bottom: 16px;
+        }
+
+        .index-box ol {
+            padding-left: 20px;
+            color: #4B5563;
+        }
+
+        .index-box ol li {
+            margin-bottom: 6px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+
+        .index-box ol li a {
+            color: #111111;
+            text-decoration: none;
+        }
+
+        .index-box ol li a:hover { color: #10B981; }
+
+        /* ── Seccions ── */
+        section {
+            margin-bottom: 52px;
+            scroll-margin-top: calc(var(--header-height) + 24px);
+        }
+
+        section h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            color: #111111;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        section h2 .num {
+            background: #111111;
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        p {
+            color: #374151;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+            color: #374151;
+        }
+
+        ul li, ol li {
+            margin-bottom: 8px;
+        }
+
+        /* ── Caixa de contacte ── */
+        .contact-box {
+            background: #F0FDF4;
+            border: 1px solid #A7F3D0;
+            border-radius: 8px;
+            padding: 24px 28px;
+            margin-top: 8px;
+        }
+
+        .contact-box p {
+            margin-bottom: 6px;
+            color: #065F46;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+
+        .contact-box strong {
+            color: #064E3B;
+        }
+
+        /* ── Avís destacat ── */
+        .highlight-box {
+            background: #FFFBEB;
+            border-left: 4px solid #F59E0B;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #92400E;
+            font-size: 0.9rem;
+        }
+
+        /* ── Nav CTA (Copied from restaurant.html) ── */
+        .nav-cta {
+            background: var(--black) !important;
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-weight: 500 !important;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+        /* ── MOBILE MENU OVERRIDES ── */
+        @media (max-width: 900px) {
+            .hamburger { display: flex !important; }
+            .nav-menu {
+                display: none !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                bottom: auto !important;
+                flex-direction: column !important;
+                background: #ffffff !important;
+                padding: 20px 0 !important;
+                border-bottom: 1px solid var(--gray-200) !important;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05) !important;
+                transform: none !important;
+                transition: none !important;
+                z-index: 9999 !important;
+                overflow-y: visible !important;
+            }
+            .nav-menu.active { display: flex !important; }
+            .nav-menu .nav-link {
+                padding: 15px 20px !important;
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+                font-size: 1.1rem !important;
+                color: var(--black) !important;
+                border-bottom: 1px solid var(--gray-100) !important;
+                margin: 0 !important;
+            }
+            .nav-menu .nav-cta {
+                margin: 25px auto !important;
+                display: inline-block !important;
+                width: auto !important;
+            }
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div class="page-title-header fade-up">
+        <h1>Política de Privacitat</h1>
+        <p class="meta">Última actualització: 24 de maig de 2024</p>
+    </div>
+
+    <main>
+
+        <!-- Índex de continguts -->
+        <nav class="index-box fade-up" aria-label="Índex de continguts">
+            <h2>Continguts</h2>
+            <ol>
+                <li><a href="#responsable">Responsable del tractament</a></li>
+                <li><a href="#dades">Dades que es recullen</a></li>
+                <li><a href="#finalitat">Finalitat del tractament</a></li>
+                <li><a href="#base-legal">Base legal</a></li>
+                <li><a href="#conservacio">Conservació de les dades</a></li>
+                <li><a href="#destinataris">Destinataris i transferències internacionals</a></li>
+                <li><a href="#drets">Drets dels usuaris</a></li>
+                <li><a href="#seguretat">Mesures de seguretat</a></li>
+                <li><a href="#cookies">Política de cookies</a></li>
+                <li><a href="#contacte">Contacte</a></li>
+            </ol>
+        </nav>
+
+        <!-- Introducció -->
+        <section class="fade-up">
+            <p>
+                En compliment del que disposa el Reglament (UE) 2016/679 del Parlament Europeu i del Consell, de 27 d'abril de 2016, relatiu a la protecció de les persones físiques pel que fa al tractament de dades personals i a la lliure circulació d'aquestes dades (<strong>RGPD</strong>), i la Llei Orgànica 3/2018, de 5 de desembre, de Protecció de Dades Personals i garantia dels drets digitals (<strong>LOPDGDD</strong>), s'informa als usuaris de les condicions sota les quals es tracten les seves dades personals.
+            </p>
+            <p>
+                L'ús dels serveis oferts a través d'aquest lloc web implica l'acceptació de la present Política de Privacitat. Si no esteu d'acord amb els seus termes, us preguem que no feu ús dels nostres serveis.
+            </p>
+        </section>
+
+        <!-- 1. Responsable del tractament -->
+        <section id="responsable" class="fade-up">
+            <h2><span class="num" aria-hidden="true">1</span>Responsable del tractament</h2>
+            <p>El responsable del tractament de les dades personals recollides a través d'aquest lloc web és:</p>
+            <div class="contact-box">
+                <!-- PERSONALITZAR: Substitueix totes les dades de l'empresa -->
+                <p><strong>Denominació social:</strong> [NOM DE L'EMPRESA, S.L.]</p>
+                <p><strong>NIF/CIF:</strong> [B00000000]</p>
+                <p><strong>Adreça:</strong> [Carrer Exemple, 00, 00000 Barcelona, Catalunya]</p>
+                <p><strong>Correu electrònic:</strong> <a href="mailto:privacitat@exemple.com">privacitat@exemple.com</a></p>
+                <p><strong>Telèfon:</strong> [+34 900 000 000]</p>
+                <!-- PERSONALITZAR: Si disposeu de DPO (Delegat de Protecció de Dades), afegiu-lo aquí -->
+                <p><strong>Delegat de Protecció de Dades (DPD/DPO):</strong> [dpo@exemple.com] (si aplica)</p>
+            </div>
+        </section>
+
+        <!-- 2. Dades que es recullen -->
+        <section id="dades" class="fade-up">
+            <h2><span class="num" aria-hidden="true">2</span>Dades que es recullen</h2>
+            <p>En funció de la interacció de l'usuari amb el lloc web, es poden tractar les categories de dades personals següents:</p>
+
+            <p><strong>Dades facilitades per l'usuari de forma activa:</strong></p>
+            <ul>
+                <li>Dades identificatives: nom i cognoms.</li>
+                <li>Dades de contacte: adreça de correu electrònic, número de telèfon.</li>
+                <li>Dades professionals: nom del negoci, sector i càrrec (en el marc del servei B2B).</li>
+                <li>Dades de facturació: adreça fiscal i informació de pagament (gestionada per pasarel·les de pagament certificades).</li>
+                <!-- PERSONALITZAR: Afegiu o elimineu categories de dades segons el vostre servei -->
+            </ul>
+
+            <p><strong>Dades recollides de forma automàtica:</strong></p>
+            <ul>
+                <li>Dades de navegació: adreça IP, tipus i versió del navegador, sistema operatiu.</li>
+                <li>Dades de sessió: pàgines visitades, temps de navegació, origen de la visita.</li>
+                <li>Dades de cookies i tecnologies similars (vegeu la secció 9).</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Menors d'edat:</strong> Els nostres serveis no estan adreçats a menors de 14 anys. No recollim intencionadament dades personals de menors. Si teniu coneixement que un menor ens ha proporcionat dades sense el consentiment parental, us preguem que ens ho comuniqueu.</p>
+            </div>
+        </section>
+
+        <!-- 3. Finalitat del tractament -->
+        <section id="finalitat" class="fade-up">
+            <h2><span class="num" aria-hidden="true">3</span>Finalitat del tractament</h2>
+            <p>Les dades personals recollides es tracten amb les finalitats específiques següents:</p>
+            <ul>
+                <li><strong>Prestació del servei:</strong> Gestionar el registre d'usuaris, administrar els comptes, i facilitar l'ús de la plataforma de fidelització.</li>
+                <li><strong>Gestió comercial:</strong> Tramitar sol·licituds, pressupostos, contractes i facturació.</li>
+                <li><strong>Comunicació:</strong> Respondre consultes i peticions rebudes a través dels formularis de contacte o per correu electrònic.</li>
+                <li><strong>Enviament de comunicacions comercials:</strong> Remetre informació sobre productes, serveis, novetats i ofertes, sempre amb el consentiment previ de l'usuari i amb la possibilitat de revocar-lo en qualsevol moment.</li>
+                <li><strong>Millora del servei:</strong> Analitzar el comportament de navegació per optimitzar la plataforma, corregir errors i millorar l'experiència d'usuari.</li>
+                <li><strong>Compliment d'obligacions legals:</strong> Conservar la documentació exigida per la legislació fiscal, mercantil i de protecció de dades.</li>
+                <!-- PERSONALITZAR: Afegiu altres finalitats si el vostre servei ho requereix -->
+            </ul>
+        </section>
+
+        <!-- 4. Base legal -->
+        <section id="base-legal" class="fade-up">
+            <h2><span class="num" aria-hidden="true">4</span>Base legal del tractament</h2>
+            <p>El tractament de les dades personals es realitza emparant-se en les bases jurídiques que s'indiquen a continuació, d'acord amb l'article 6 del RGPD:</p>
+            <ul>
+                <li><strong>Execució d'un contracte (art. 6.1.b RGPD):</strong> El tractament és necessari per a l'execució del contracte de prestació de servei subscrit amb l'usuari, o per a l'aplicació de mesures precontractuals a petició seva.</li>
+                <li><strong>Consentiment de l'interessat (art. 6.1.a RGPD):</strong> Per a l'enviament de comunicacions comercials i l'ús de cookies no essencials, l'usuari haurà d'haver prestat el seu consentiment exprés, que podrà revocar en qualsevol moment.</li>
+                <li><strong>Compliment d'obligació legal (art. 6.1.c RGPD):</strong> En aquells casos en què la normativa vigent (fiscal, mercantil, laboral) obligui al tractament de determinades dades.</li>
+                <li><strong>Interès legítim (art. 6.1.f RGPD):</strong> Per a la millora dels serveis, la prevenció del frau i la seguretat de la plataforma, sempre que no prevalguin els interessos o drets fonamentals de l'usuari.</li>
+            </ul>
+        </section>
+
+        <!-- 5. Conservació de les dades -->
+        <section id="conservacio" class="fade-up">
+            <h2><span class="num" aria-hidden="true">5</span>Conservació de les dades</h2>
+            <p>Les dades personals es conservaran durant el termini estrictament necessari per a la finalitat per a la qual van ser recollides, atenent als criteris següents:</p>
+            <ul>
+                <li><strong>Relació contractual activa:</strong> Les dades es mantindran mentre duri la relació comercial o de servei.</li>
+                <li><strong>Un cop extingida la relació:</strong> Les dades es conservaran bloquejades durant els terminis de prescripció legals aplicables (generalment, 5 anys en matèria civil i 4 anys en matèria fiscal).</li>
+                <li><strong>Comunicacions comercials:</strong> Fins que l'usuari revoqui el seu consentiment o sol·liciti la supressió de les dades.</li>
+                <li><strong>Dades de navegació:</strong> Amb caràcter general, un màxim de 25 mesos des de la data de recollida, d'acord amb les recomanacions de l'Autoritat de Control.</li>
+            </ul>
+            <p>Transcorreguts aquests terminis, les dades seran eliminades o anonimitzades de forma segura.</p>
+        </section>
+
+        <!-- 6. Destinataris -->
+        <section id="destinataris" class="fade-up">
+            <h2><span class="num" aria-hidden="true">6</span>Destinataris i transferències internacionals</h2>
+            <p>Les dades personals dels usuaris no seran cedides ni comunicades a tercers, excepte en els supòsits següents:</p>
+            <ul>
+                <li><strong>Proveïdors de serveis (encarregats del tractament):</strong> Empreses que actuen com a encarregades del tractament en nom del responsable, com ara proveïdors d'allotjament web, plataformes d'enviament de correu electrònic, o sistemes de pagament. Tots ells han subscrit els contractes d'encàrrec del tractament corresponents i ofereixen garanties suficients.</li>
+                <li><strong>Obligació legal:</strong> Quan sigui requerit per les autoritats públiques competents o per una obligació legal.</li>
+                <!-- PERSONALITZAR: Afegiu altres destinataris si aplica (p.ex. partners, distribuïdors) -->
+            </ul>
+
+            <p><strong>Transferències internacionals:</strong> En cas que algun proveïdor estigui establert fora de l'Espai Econòmic Europeu (EEE), el responsable garantirà que la transferència es realitzi amb les garanties adequades, com ara clàusules contractuals tipus aprovades per la Comissió Europea o la verificació que el tercer país ofereix un nivell adequat de protecció.</p>
+        </section>
+
+        <!-- 7. Drets dels usuaris -->
+        <section id="drets" class="fade-up">
+            <h2><span class="num" aria-hidden="true">7</span>Drets dels usuaris</h2>
+            <p>D'acord amb la normativa vigent en matèria de protecció de dades, els usuaris poden exercir els drets següents:</p>
+            <ul>
+                <li><strong>Dret d'accés:</strong> Obtenir confirmació sobre si les seves dades personals estan sent tractades i, en cas afirmatiu, accedir-hi.</li>
+                <li><strong>Dret de rectificació:</strong> Sol·licitar la correcció de les dades inexactes o incompletes.</li>
+                <li><strong>Dret de supressió ("dret a l'oblit"):</strong> Sol·licitar l'eliminació de les seves dades personals quan, entre d'altres motius, ja no siguin necessàries per a la finalitat per a la qual van ser recollides.</li>
+                <li><strong>Dret a la limitació del tractament:</strong> Sol·licitar que es suspengui el tractament de les seves dades en determinades circumstàncies.</li>
+                <li><strong>Dret a la portabilitat de les dades:</strong> Rebre les seves dades en un format estructurat, d'ús comú i de lectura mecànica, i transmetre-les a un altre responsable del tractament.</li>
+                <li><strong>Dret d'oposició:</strong> Oposar-se al tractament de les seves dades per motius relacionats amb la seva situació particular, o quan el tractament es basi en l'interès legítim del responsable.</li>
+                <li><strong>Dret a no ser objecte de decisions automatitzades:</strong> No ser objecte d'una decisió basada únicament en el tractament automatitzat que produeixi efectes jurídics o que l'afecti de manera significativa.</li>
+                <li><strong>Dret a retirar el consentiment:</strong> Revocar el consentiment atorgat en qualsevol moment, sense que això afecti la licitud del tractament previ a la retirada.</li>
+            </ul>
+
+            <p>Per exercir qualsevol d'aquests drets, l'usuari pot dirigir-se al responsable del tractament a través de les vies indicades a l'apartat de contacte d'aquest document, adjuntant una còpia del seu document d'identitat o equivalent.</p>
+
+            <p>Addicionalment, l'usuari té dret a presentar una reclamació davant l'<strong>Agència Espanyola de Protecció de Dades (AEPD)</strong>, autoritat de control competent a Espanya, a través del seu lloc web: <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.</p>
+        </section>
+
+        <!-- 8. Mesures de seguretat -->
+        <section id="seguretat" class="fade-up">
+            <h2><span class="num" aria-hidden="true">8</span>Mesures de seguretat</h2>
+            <p>El responsable del tractament ha adoptat les mesures tècniques i organitzatives necessàries per garantir la seguretat de les dades personals i evitar la seva alteració, pèrdua, tractament o accés no autoritzat, tenint en compte l'estat de la tecnologia, la naturalesa de les dades emmagatzemades i els riscos als quals estan exposades.</p>
+            <p>Entre les mesures implementades, s'inclouen:</p>
+            <ul>
+                <li>Xifratge de les comunicacions mitjançant protocol SSL/TLS.</li>
+                <li>Controls d'accés basats en rols i autenticació segura.</li>
+                <li>Procediments de còpia de seguretat periòdica de les dades.</li>
+                <li>Formació i sensibilització del personal en matèria de protecció de dades.</li>
+                <li>Avaluació periòdica de les mesures de seguretat implementades.</li>
+            </ul>
+            <p>No obstant això, cap sistema de transmissió per Internet és completament segur, i el responsable no pot garantir la seguretat absoluta de la informació transmesa a través de la xarxa.</p>
+        </section>
+
+        <!-- 9. Política de cookies -->
+        <section id="cookies" class="fade-up">
+            <h2><span class="num" aria-hidden="true">9</span>Política de cookies</h2>
+            <p>Aquest lloc web utilitza cookies i tecnologies similars per millorar la navegació, analitzar l'ús del servei i personalitzar continguts. Les cookies es classifiquen en:</p>
+            <ul>
+                <li><strong>Cookies tècniques o essencials:</strong> Necessàries per al funcionament del lloc web. No requereixen consentiment.</li>
+                <li><strong>Cookies analítiques:</strong> Permeten mesurar i analitzar el comportament dels usuaris. Requereixen consentiment previ.</li>
+                <li><strong>Cookies de màrqueting o publicitat:</strong> Permeten mostrar publicitat personalitzada. Requereixen consentiment previ.</li>
+            </ul>
+            <p>L'usuari pot configurar el seu navegador per bloquejar o eliminar les cookies. Per a informació detallada sobre les cookies utilitzades, les seves finalitats i com gestionar-les, consulteu la nostra <a href="cookies.html">Política de Cookies</a> completa.</p>
+            <!-- PERSONALITZAR: Afegiu l'URL correcte a la vostra pàgina de cookies -->
+        </section>
+
+        <!-- 10. Contacte -->
+        <section id="contacte" class="fade-up">
+            <h2><span class="num" aria-hidden="true">10</span>Contacte</h2>
+            <p>Per a qualsevol consulta, dubte o sol·licitud relacionada amb el tractament de les seves dades personals o per exercir els seus drets, pot posar-se en contacte amb el responsable del tractament per les vies següents:</p>
+            <div class="contact-box">
+                <!-- PERSONALITZAR: Substitueix les dades de contacte -->
+                <p><strong>Adreça postal:</strong> [NOM DE L'EMPRESA] · [Carrer Exemple, 00] · [00000 Barcelona]</p>
+                <p><strong>Formulari de contacte:</strong> <a href="contact.html">Accediu al formulari</a></p>
+            </div>
+            <p style="margin-top: 20px;">El responsable del tractament es compromet a atendre les sol·licituds en el termini màxim d'un mes a partir de la seva recepció, termini que podrà prorrogar-se dos mesos addicionals en cas de complexitat o volum de sol·licituds, prèvia notificació a l'interessat.</p>
+
+            <p>La present Política de Privacitat pot ser modificada per adaptar-la a canvis legislatius, jurisprudencials o de pràctica empresarial. Qualsevol modificació serà publicada en aquest lloc web, per la qual cosa es recomana revisar-la periòdicament.</p>
+        </section>
+
+    </main>
+    <div id="footer"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Funció per carregar contingut HTML
+            function loadComponent(url, elementId) {
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById(elementId).innerHTML = data;
+                        // Post-load processing
+                        if (elementId === 'header') {
+                            initializeHamburgerMenu();
+                            updateNavLinks();
+                        }
+                        if (elementId === 'footer') {
+                            updateFooterLinks();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                        document.getElementById(elementId).innerHTML = `<p>Error loading content from ${url}. Please check the console for details.</p>`;
+                    });
+            }
+
+            // Carregar header i footer
+            loadComponent('header.html', 'header');
+            loadComponent('footer.html', 'footer');
+
+            // Funció per inicialitzar el menú hamburguesa
+            function initializeHamburgerMenu() {
+                const hamburger = document.getElementById('hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+
+                if (hamburger && navMenu) {
+                    hamburger.addEventListener('click', () => {
+                        hamburger.classList.toggle('active');
+                        navMenu.classList.toggle('active');
+                        document.body.classList.toggle('menu-open');
+                    });
+                }
+            }
+
+            // Funció per actualitzar els enllaços de navegació per a subpàgines
+            function updateNavLinks() {
+                const navLinks = document.querySelectorAll('#header .nav-menu a[href^="#"]');
+                navLinks.forEach(link => {
+                    const targetId = link.getAttribute('href');
+                    link.setAttribute('href', 'restaurant.html' + targetId);
+                });
+                const logoLink = document.querySelector('#header .logo');
+                if (logoLink) {
+                    logoLink.setAttribute('href', 'restaurant.html');
+                }
+            }
+
+            function updateFooterLinks() {
+                const footerAnchorLinks = document.querySelectorAll('#footer a[href^="#"]');
+                footerAnchorLinks.forEach(link => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId !== '#') {
+                        link.setAttribute('href', 'restaurant.html' + targetId);
+                    } else {
+                        link.setAttribute('href', 'restaurant.html');
+                    }
+                });
+            }
+
+            // Smooth scroll for anchor links (delegat al body per funcionar amb contingut dinàmic)
+            document.body.addEventListener('click', function(e) {
+                const link = e.target.closest('a[href^="#"]');
+                if (link) {
+                    const href = link.getAttribute('href');
+                    // Only prevent default for same-page anchors
+                    if (document.querySelector(href)) {
+                        e.preventDefault();
+
+                        const hamburger = document.getElementById('hamburger');
+                        const navMenu = document.querySelector('.nav-menu');
+                        if (hamburger && hamburger.classList.contains('active')) {
+                            hamburger.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            document.body.classList.remove('menu-open');
+                        }
+
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                }
+            });
+
+            // Intersection Observer per a animacions
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
